@@ -1,0 +1,975 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DBClinicaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CITAS">
+          <Key>
+            <PropertyRef Name="ID_CITA" />
+          </Key>
+          <Property Name="ID_CITA" Type="int" Nullable="false" />
+          <Property Name="FECHA" Type="date" Nullable="false" />
+          <Property Name="OBOSERVACIONES" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="ID_PACIENTE" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EXAMEN">
+          <Key>
+            <PropertyRef Name="ID_EXAMEN" />
+          </Key>
+          <Property Name="ID_EXAMEN" Type="int" Nullable="false" />
+          <Property Name="NOMBRE_EXAMEN" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="PRECIO" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="RECOMENDACION" Type="varchar" MaxLength="150" />
+          <Property Name="DESCRIPCION" Type="varchar" MaxLength="150" />
+          <Property Name="TRATAMIENTO" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="EXAMEN_PACIENTE">
+          <Key>
+            <PropertyRef Name="ID_EXAMEN_PACIENTE" />
+          </Key>
+          <Property Name="ID_EXAMEN_PACIENTE" Type="int" Nullable="false" />
+          <Property Name="ID_EXAMEN" Type="int" Nullable="false" />
+          <Property Name="ID_PACIENTE" Type="int" Nullable="false" />
+          <Property Name="FECHA_REALIZO" Type="date" Nullable="false" />
+          <Property Name="ENCARGADO" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HABITACION">
+          <Key>
+            <PropertyRef Name="ID_HABITACION" />
+          </Key>
+          <Property Name="ID_HABITACION" Type="int" Nullable="false" />
+          <Property Name="NOMBRE_HABITACION" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CAPACIDAD" Type="int" Nullable="false" />
+          <Property Name="ESTADO" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DBClinica.dbo.INVENTARIO' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="INVENTARIO">
+          <Key>
+            <PropertyRef Name="ID_TIPO_INVENTARIO" />
+            <PropertyRef Name="ID_MEDICINA" />
+            
+            <PropertyRef Name="ID_SUCURSAL" />
+          </Key>
+          <Property Name="ID_TIPO_INVENTARIO" Type="int" Nullable="false" />
+          <Property Name="ID_MEDICINA" Type="int" Nullable="false" />
+          <Property Name="CANTIDAD" Type="int" Nullable="false" />
+          <Property Name="ID_SUCURSAL" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MEDICINA">
+          <Key>
+            <PropertyRef Name="ID_MEDICINA" />
+          </Key>
+          <Property Name="ID_MEDICINA" Type="int" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="OPERACION">
+          <Key>
+            <PropertyRef Name="ID_OPERACION" />
+          </Key>
+          <Property Name="ID_OPERACION" Type="int" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MODULO" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PACIENTE">
+          <Key>
+            <PropertyRef Name="ID_PACIENTE" />
+          </Key>
+          <Property Name="ID_PACIENTE" Type="int" Nullable="false" />
+          <Property Name="PRIMER_NOMBRE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SEGUNDO_NOMBRE" Type="varchar" MaxLength="10" />
+          <Property Name="PRIMER_APELLIDO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="SEGUNDO_APELLIDO" Type="varchar" MaxLength="50" />
+          <Property Name="EDAD" Type="int" Nullable="false" />
+          <Property Name="DIRECCION" Type="varchar" MaxLength="50" />
+          <Property Name="FECHA_NACIMIENTO" Type="date" />
+          <Property Name="TELEFONO" Type="int" Nullable="false" />
+          <Property Name="CORREO_ELECTRONICO" Type="varchar" MaxLength="50" />
+          <Property Name="ID_SUCURSAL" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PACIENTE_HABITACION">
+          <Key>
+            <PropertyRef Name="ID_PACIENTE_HABITACION" />
+          </Key>
+          <Property Name="ID_PACIENTE_HABITACION" Type="int" Nullable="false" />
+          <Property Name="ID_PACIENTE" Type="int" Nullable="false" />
+          <Property Name="ID_HABITACION" Type="int" Nullable="false" />
+          <Property Name="Fecha_Estancia" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ROL">
+          <Key>
+            <PropertyRef Name="ID_ROL" />
+          </Key>
+          <Property Name="ID_ROL" Type="int" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AREA" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DBClinica.dbo.ROL_OPERACION' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="ROL_OPERACION">
+          <Key>
+            <PropertyRef Name="ID_ROL" />
+            <PropertyRef Name="ID_USUARIO" />
+            <PropertyRef Name="ID_OPERACION" />
+          </Key>
+          <Property Name="ID_ROL" Type="int" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="int" Nullable="false" />
+          <Property Name="ID_OPERACION" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SUCURSAL">
+          <Key>
+            <PropertyRef Name="ID_SUCURSAL" />
+          </Key>
+          <Property Name="ID_SUCURSAL" Type="int" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="50" />
+          <Property Name="DIRECCION" Type="varchar" MaxLength="50" />
+          <Property Name="TELEFONO" Type="int" />
+        </EntityType>
+        <EntityType Name="TIPO_INVENTARIO">
+          <Key>
+            <PropertyRef Name="ID_TIPO_INVENTARIO" />
+          </Key>
+          <Property Name="ID_TIPO_INVENTARIO" Type="int" Nullable="false" />
+          <Property Name="NOMBRE" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="ID_USUARIO" />
+          </Key>
+          <Property Name="ID_USUARIO" Type="int" Nullable="false" />
+          <Property Name="PRIMER_NOMBRE" Type="varchar" MaxLength="45" />
+          <Property Name="SEGUNDO_NOMBRE" Type="varchar" MaxLength="45" />
+          <Property Name="PRIMER_APELLIDO" Type="varchar" MaxLength="45" />
+          <Property Name="SEGUNDO_APELLIDO" Type="varchar" MaxLength="45" />
+          <Property Name="USERC" Type="varchar" MaxLength="30" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="20" />
+          <Property Name="EDAD" Type="int" />
+          <Property Name="FECHA_CREACION" Type="date" />
+          <Property Name="ESTADO" Type="varchar" MaxLength="15" />
+          <Property Name="PUESTO" Type="varchar" MaxLength="50" />
+          <Property Name="GENERO" Type="varchar" MaxLength="15" />
+          <Property Name="ID_SUCURSAL" Type="int" />
+        </EntityType>
+        <Association Name="FK_CITAS_PACIENTES">
+          <End Role="PACIENTE" Type="Self.PACIENTE" Multiplicity="1" />
+          <End Role="CITAS" Type="Self.CITAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PACIENTE">
+              <PropertyRef Name="ID_PACIENTE" />
+            </Principal>
+            <Dependent Role="CITAS">
+              <PropertyRef Name="ID_PACIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EXAMEN_PACIENTE_EXAMEN">
+          <End Role="EXAMEN" Type="Self.EXAMEN" Multiplicity="1" />
+          <End Role="EXAMEN_PACIENTE" Type="Self.EXAMEN_PACIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EXAMEN">
+              <PropertyRef Name="ID_EXAMEN" />
+            </Principal>
+            <Dependent Role="EXAMEN_PACIENTE">
+              <PropertyRef Name="ID_EXAMEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EXAMEN_PACIENTE_PACIENTES">
+          <End Role="PACIENTE" Type="Self.PACIENTE" Multiplicity="1" />
+          <End Role="EXAMEN_PACIENTE" Type="Self.EXAMEN_PACIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PACIENTE">
+              <PropertyRef Name="ID_PACIENTE" />
+            </Principal>
+            <Dependent Role="EXAMEN_PACIENTE">
+              <PropertyRef Name="ID_PACIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INVENTARIO_MEDICINA">
+          <End Role="MEDICINA" Type="Self.MEDICINA" Multiplicity="1" />
+          <End Role="INVENTARIO" Type="Self.INVENTARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEDICINA">
+              <PropertyRef Name="ID_MEDICINA" />
+            </Principal>
+            <Dependent Role="INVENTARIO">
+              <PropertyRef Name="ID_MEDICINA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INVENTARIO_SUCURSAL">
+          <End Role="SUCURSAL" Type="Self.SUCURSAL" Multiplicity="1" />
+          <End Role="INVENTARIO" Type="Self.INVENTARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUCURSAL">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Principal>
+            <Dependent Role="INVENTARIO">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INVENTARIO_TIPO_INVENTARIO">
+          <End Role="TIPO_INVENTARIO" Type="Self.TIPO_INVENTARIO" Multiplicity="1" />
+          <End Role="INVENTARIO" Type="Self.INVENTARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_INVENTARIO">
+              <PropertyRef Name="ID_TIPO_INVENTARIO" />
+            </Principal>
+            <Dependent Role="INVENTARIO">
+              <PropertyRef Name="ID_TIPO_INVENTARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PACIENTE_HABITACION_HABITACION">
+          <End Role="HABITACION" Type="Self.HABITACION" Multiplicity="1" />
+          <End Role="PACIENTE_HABITACION" Type="Self.PACIENTE_HABITACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HABITACION">
+              <PropertyRef Name="ID_HABITACION" />
+            </Principal>
+            <Dependent Role="PACIENTE_HABITACION">
+              <PropertyRef Name="ID_HABITACION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PACIENTE_HABITACION_PACIENTE">
+          <End Role="PACIENTE" Type="Self.PACIENTE" Multiplicity="1" />
+          <End Role="PACIENTE_HABITACION" Type="Self.PACIENTE_HABITACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PACIENTE">
+              <PropertyRef Name="ID_PACIENTE" />
+            </Principal>
+            <Dependent Role="PACIENTE_HABITACION">
+              <PropertyRef Name="ID_PACIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PACIENTE_SUCURSAL">
+          <End Role="SUCURSAL" Type="Self.SUCURSAL" Multiplicity="1" />
+          <End Role="PACIENTE" Type="Self.PACIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUCURSAL">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Principal>
+            <Dependent Role="PACIENTE">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ROL_OPERACION_OPERACION">
+          <End Role="OPERACION" Type="Self.OPERACION" Multiplicity="1" />
+          <End Role="ROL_OPERACION" Type="Self.ROL_OPERACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OPERACION">
+              <PropertyRef Name="ID_OPERACION" />
+            </Principal>
+            <Dependent Role="ROL_OPERACION">
+              <PropertyRef Name="ID_OPERACION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ROL_OPERACION_ROL">
+          <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
+          <End Role="ROL_OPERACION" Type="Self.ROL_OPERACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROL">
+              <PropertyRef Name="ID_ROL" />
+            </Principal>
+            <Dependent Role="ROL_OPERACION">
+              <PropertyRef Name="ID_ROL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ROL_OPERACION_USUARIO">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="ROL_OPERACION" Type="Self.ROL_OPERACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="ROL_OPERACION">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USUARIO_SUCURSAL">
+          <End Role="SUCURSAL" Type="Self.SUCURSAL" Multiplicity="0..1" />
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUCURSAL">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Principal>
+            <Dependent Role="USUARIO">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBClinicaModelStoreContainer">
+          <EntitySet Name="CITAS" EntityType="Self.CITAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EXAMEN" EntityType="Self.EXAMEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EXAMEN_PACIENTE" EntityType="Self.EXAMEN_PACIENTE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HABITACION" EntityType="Self.HABITACION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MEDICINA" EntityType="Self.MEDICINA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OPERACION" EntityType="Self.OPERACION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PACIENTE" EntityType="Self.PACIENTE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PACIENTE_HABITACION" EntityType="Self.PACIENTE_HABITACION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ROL" EntityType="Self.ROL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SUCURSAL" EntityType="Self.SUCURSAL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPO_INVENTARIO" EntityType="Self.TIPO_INVENTARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INVENTARIO" EntityType="Self.INVENTARIO" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [INVENTARIO].[ID_TIPO_INVENTARIO] AS [ID_TIPO_INVENTARIO], 
+    [INVENTARIO].[ID_MEDICINA] AS [ID_MEDICINA], 
+    [INVENTARIO].[CANTIDAD] AS [CANTIDAD], 
+    [INVENTARIO].[ID_SUCURSAL] AS [ID_SUCURSAL]
+    FROM [dbo].[INVENTARIO] AS [INVENTARIO]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ROL_OPERACION" EntityType="Self.ROL_OPERACION" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ROL_OPERACION].[ID_ROL] AS [ID_ROL], 
+    [ROL_OPERACION].[ID_USUARIO] AS [ID_USUARIO], 
+    [ROL_OPERACION].[ID_OPERACION] AS [ID_OPERACION]
+    FROM [dbo].[ROL_OPERACION] AS [ROL_OPERACION]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_CITAS_PACIENTES" Association="Self.FK_CITAS_PACIENTES">
+            <End Role="PACIENTE" EntitySet="PACIENTE" />
+            <End Role="CITAS" EntitySet="CITAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EXAMEN_PACIENTE_EXAMEN" Association="Self.FK_EXAMEN_PACIENTE_EXAMEN">
+            <End Role="EXAMEN" EntitySet="EXAMEN" />
+            <End Role="EXAMEN_PACIENTE" EntitySet="EXAMEN_PACIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EXAMEN_PACIENTE_PACIENTES" Association="Self.FK_EXAMEN_PACIENTE_PACIENTES">
+            <End Role="PACIENTE" EntitySet="PACIENTE" />
+            <End Role="EXAMEN_PACIENTE" EntitySet="EXAMEN_PACIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INVENTARIO_MEDICINA" Association="Self.FK_INVENTARIO_MEDICINA">
+            <End Role="MEDICINA" EntitySet="MEDICINA" />
+            <End Role="INVENTARIO" EntitySet="INVENTARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INVENTARIO_SUCURSAL" Association="Self.FK_INVENTARIO_SUCURSAL">
+            <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+            <End Role="INVENTARIO" EntitySet="INVENTARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INVENTARIO_TIPO_INVENTARIO" Association="Self.FK_INVENTARIO_TIPO_INVENTARIO">
+            <End Role="TIPO_INVENTARIO" EntitySet="TIPO_INVENTARIO" />
+            <End Role="INVENTARIO" EntitySet="INVENTARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACIENTE_HABITACION_HABITACION" Association="Self.FK_PACIENTE_HABITACION_HABITACION">
+            <End Role="HABITACION" EntitySet="HABITACION" />
+            <End Role="PACIENTE_HABITACION" EntitySet="PACIENTE_HABITACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACIENTE_HABITACION_PACIENTE" Association="Self.FK_PACIENTE_HABITACION_PACIENTE">
+            <End Role="PACIENTE" EntitySet="PACIENTE" />
+            <End Role="PACIENTE_HABITACION" EntitySet="PACIENTE_HABITACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACIENTE_SUCURSAL" Association="Self.FK_PACIENTE_SUCURSAL">
+            <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+            <End Role="PACIENTE" EntitySet="PACIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ROL_OPERACION_OPERACION" Association="Self.FK_ROL_OPERACION_OPERACION">
+            <End Role="OPERACION" EntitySet="OPERACION" />
+            <End Role="ROL_OPERACION" EntitySet="ROL_OPERACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ROL_OPERACION_ROL" Association="Self.FK_ROL_OPERACION_ROL">
+            <End Role="ROL" EntitySet="ROL" />
+            <End Role="ROL_OPERACION" EntitySet="ROL_OPERACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ROL_OPERACION_USUARIO" Association="Self.FK_ROL_OPERACION_USUARIO">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="ROL_OPERACION" EntitySet="ROL_OPERACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USUARIO_SUCURSAL" Association="Self.FK_USUARIO_SUCURSAL">
+            <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+            <End Role="USUARIO" EntitySet="USUARIO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBClinicaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CITAS">
+          <Key>
+            <PropertyRef Name="ID_CITA" />
+          </Key>
+          <Property Name="ID_CITA" Type="Int32" Nullable="false" />
+          <Property Name="FECHA" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="OBOSERVACIONES" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_PACIENTE" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PACIENTE" Relationship="DBClinicaModel.FK_CITAS_PACIENTES" FromRole="CITAS" ToRole="PACIENTE" />
+        </EntityType>
+        <EntityType Name="MEDICINA">
+          <Key>
+            <PropertyRef Name="ID_MEDICINA" />
+          </Key>
+          <Property Name="ID_MEDICINA" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="INVENTARIO" Relationship="Self.FK_INVENTARIO_MEDICINA" FromRole="MEDICINA" ToRole="INVENTARIO" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ROL">
+          <Key>
+            <PropertyRef Name="ID_ROL" />
+          </Key>
+          <Property Name="ID_ROL" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AREA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ROL_OPERACION" Relationship="Self.FK_ROL_OPERACION_ROL" FromRole="ROL" ToRole="ROL_OPERACION" />
+        </EntityType>
+        <EntityType Name="SUCURSAL">
+          <Key>
+            <PropertyRef Name="ID_SUCURSAL" />
+          </Key>
+          <Property Name="ID_SUCURSAL" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DIRECCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFONO" Type="Int32" />
+          <NavigationProperty Name="INVENTARIO" Relationship="Self.FK_INVENTARIO_SUCURSAL" FromRole="SUCURSAL" ToRole="INVENTARIO" />
+          <NavigationProperty Name="PACIENTE" Relationship="DBClinicaModel.FK_PACIENTE_SUCURSAL" FromRole="SUCURSAL" ToRole="PACIENTE" />
+          <NavigationProperty Name="USUARIO" Relationship="DBClinicaModel.FK_USUARIO_SUCURSAL" FromRole="SUCURSAL" ToRole="USUARIO" />
+        </EntityType>
+        <EntityType Name="TIPO_INVENTARIO">
+          <Key>
+            <PropertyRef Name="ID_TIPO_INVENTARIO" />
+          </Key>
+          <Property Name="ID_TIPO_INVENTARIO" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="INVENTARIO" Relationship="Self.FK_INVENTARIO_TIPO_INVENTARIO" FromRole="TIPO_INVENTARIO" ToRole="INVENTARIO" />
+        </EntityType>
+        <EntityType Name="INVENTARIO">
+          <Key>
+            <PropertyRef Name="ID_TIPO_INVENTARIO" />
+            <PropertyRef Name="ID_MEDICINA" />
+            <PropertyRef Name="ID_SUCURSAL" />
+          </Key>
+          <Property Name="ID_TIPO_INVENTARIO" Type="Int32" Nullable="false" />
+          <Property Name="ID_MEDICINA" Type="Int32" Nullable="false" />
+          <Property Name="CANTIDAD" Type="Int32" Nullable="false" />
+          <Property Name="ID_SUCURSAL" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MEDICINA" Relationship="Self.FK_INVENTARIO_MEDICINA" FromRole="INVENTARIO" ToRole="MEDICINA" />
+          <NavigationProperty Name="SUCURSAL" Relationship="Self.FK_INVENTARIO_SUCURSAL" FromRole="INVENTARIO" ToRole="SUCURSAL" />
+          <NavigationProperty Name="TIPO_INVENTARIO" Relationship="Self.FK_INVENTARIO_TIPO_INVENTARIO" FromRole="INVENTARIO" ToRole="TIPO_INVENTARIO" />
+        </EntityType>
+        <EntityType Name="ROL_OPERACION">
+          <Key>
+            <PropertyRef Name="ID_ROL" />
+            <PropertyRef Name="ID_USUARIO" />
+            <PropertyRef Name="ID_OPERACION" />
+          </Key>
+          <Property Name="ID_ROL" Type="Int32" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="Int32" Nullable="false" />
+          <Property Name="ID_OPERACION" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ROL" Relationship="Self.FK_ROL_OPERACION_ROL" FromRole="ROL_OPERACION" ToRole="ROL" />
+          <NavigationProperty Name="USUARIO" Relationship="DBClinicaModel.FK_ROL_OPERACION_USUARIO" FromRole="ROL_OPERACION" ToRole="USUARIO" />
+          <NavigationProperty Name="OPERACION" Relationship="DBClinicaModel.FK_ROL_OPERACION_OPERACION" FromRole="ROL_OPERACION" ToRole="OPERACION" />
+        </EntityType>
+        <Association Name="FK_INVENTARIO_MEDICINA">
+          <End Role="MEDICINA" Type="Self.MEDICINA" Multiplicity="1" />
+          <End Role="INVENTARIO" Type="Self.INVENTARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEDICINA">
+              <PropertyRef Name="ID_MEDICINA" />
+            </Principal>
+            <Dependent Role="INVENTARIO">
+              <PropertyRef Name="ID_MEDICINA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ROL_OPERACION_ROL">
+          <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
+          <End Role="ROL_OPERACION" Type="Self.ROL_OPERACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROL">
+              <PropertyRef Name="ID_ROL" />
+            </Principal>
+            <Dependent Role="ROL_OPERACION">
+              <PropertyRef Name="ID_ROL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INVENTARIO_SUCURSAL">
+          <End Role="SUCURSAL" Type="Self.SUCURSAL" Multiplicity="1" />
+          <End Role="INVENTARIO" Type="Self.INVENTARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUCURSAL">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Principal>
+            <Dependent Role="INVENTARIO">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INVENTARIO_TIPO_INVENTARIO">
+          <End Role="TIPO_INVENTARIO" Type="Self.TIPO_INVENTARIO" Multiplicity="1" />
+          <End Role="INVENTARIO" Type="Self.INVENTARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_INVENTARIO">
+              <PropertyRef Name="ID_TIPO_INVENTARIO" />
+            </Principal>
+            <Dependent Role="INVENTARIO">
+              <PropertyRef Name="ID_TIPO_INVENTARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBClinicaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CITAS" EntityType="Self.CITAS" />
+          <EntitySet Name="MEDICINA" EntityType="Self.MEDICINA" />
+          <EntitySet Name="ROL" EntityType="Self.ROL" />
+          <EntitySet Name="SUCURSAL" EntityType="Self.SUCURSAL" />
+          <EntitySet Name="TIPO_INVENTARIO" EntityType="Self.TIPO_INVENTARIO" />
+          <EntitySet Name="INVENTARIO" EntityType="Self.INVENTARIO" />
+          <EntitySet Name="ROL_OPERACION" EntityType="Self.ROL_OPERACION" />
+          <AssociationSet Name="FK_INVENTARIO_MEDICINA" Association="Self.FK_INVENTARIO_MEDICINA">
+            <End Role="MEDICINA" EntitySet="MEDICINA" />
+            <End Role="INVENTARIO" EntitySet="INVENTARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ROL_OPERACION_ROL" Association="Self.FK_ROL_OPERACION_ROL">
+            <End Role="ROL" EntitySet="ROL" />
+            <End Role="ROL_OPERACION" EntitySet="ROL_OPERACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INVENTARIO_SUCURSAL" Association="Self.FK_INVENTARIO_SUCURSAL">
+            <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+            <End Role="INVENTARIO" EntitySet="INVENTARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INVENTARIO_TIPO_INVENTARIO" Association="Self.FK_INVENTARIO_TIPO_INVENTARIO">
+            <End Role="TIPO_INVENTARIO" EntitySet="TIPO_INVENTARIO" />
+            <End Role="INVENTARIO" EntitySet="INVENTARIO" />
+          </AssociationSet>
+          <EntitySet Name="EXAMEN" EntityType="DBClinicaModel.EXAMEN" />
+          <EntitySet Name="PACIENTE" EntityType="DBClinicaModel.PACIENTE" />
+          <AssociationSet Name="FK_CITAS_PACIENTES" Association="DBClinicaModel.FK_CITAS_PACIENTES">
+            <End Role="PACIENTE" EntitySet="PACIENTE" />
+            <End Role="CITAS" EntitySet="CITAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACIENTE_SUCURSAL" Association="DBClinicaModel.FK_PACIENTE_SUCURSAL">
+            <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+            <End Role="PACIENTE" EntitySet="PACIENTE" />
+          </AssociationSet>
+          <EntitySet Name="USUARIO" EntityType="DBClinicaModel.USUARIO" />
+          <AssociationSet Name="FK_USUARIO_SUCURSAL" Association="DBClinicaModel.FK_USUARIO_SUCURSAL">
+            <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+            <End Role="USUARIO" EntitySet="USUARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ROL_OPERACION_USUARIO" Association="DBClinicaModel.FK_ROL_OPERACION_USUARIO">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="ROL_OPERACION" EntitySet="ROL_OPERACION" />
+          </AssociationSet>
+          <EntitySet Name="HABITACION" EntityType="DBClinicaModel.HABITACION" />
+          <EntitySet Name="OPERACION" EntityType="DBClinicaModel.OPERACION" />
+          <AssociationSet Name="FK_ROL_OPERACION_OPERACION" Association="DBClinicaModel.FK_ROL_OPERACION_OPERACION">
+            <End Role="OPERACION" EntitySet="OPERACION" />
+            <End Role="ROL_OPERACION" EntitySet="ROL_OPERACION" />
+          </AssociationSet>
+          <EntitySet Name="EXAMEN_PACIENTE" EntityType="DBClinicaModel.EXAMEN_PACIENTE" />
+          <AssociationSet Name="FK_EXAMEN_PACIENTE_EXAMEN" Association="DBClinicaModel.FK_EXAMEN_PACIENTE_EXAMEN">
+            <End Role="EXAMEN" EntitySet="EXAMEN" />
+            <End Role="EXAMEN_PACIENTE" EntitySet="EXAMEN_PACIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EXAMEN_PACIENTE_PACIENTES" Association="DBClinicaModel.FK_EXAMEN_PACIENTE_PACIENTES">
+            <End Role="PACIENTE" EntitySet="PACIENTE" />
+            <End Role="EXAMEN_PACIENTE" EntitySet="EXAMEN_PACIENTE" />
+          </AssociationSet>
+          <EntitySet Name="PACIENTE_HABITACION" EntityType="DBClinicaModel.PACIENTE_HABITACION" />
+          <AssociationSet Name="FK_PACIENTE_HABITACION_HABITACION" Association="DBClinicaModel.FK_PACIENTE_HABITACION_HABITACION">
+            <End Role="HABITACION" EntitySet="HABITACION" />
+            <End Role="PACIENTE_HABITACION" EntitySet="PACIENTE_HABITACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACIENTE_HABITACION_PACIENTE" Association="DBClinicaModel.FK_PACIENTE_HABITACION_PACIENTE">
+            <End Role="PACIENTE" EntitySet="PACIENTE" />
+            <End Role="PACIENTE_HABITACION" EntitySet="PACIENTE_HABITACION" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="EXAMEN">
+          <Key>
+            <PropertyRef Name="ID_EXAMEN" />
+          </Key>
+          <Property Name="ID_EXAMEN" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE_EXAMEN" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="PRECIO" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="RECOMENDACION" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="TRATAMIENTO" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EXAMEN_PACIENTE" Relationship="DBClinicaModel.FK_EXAMEN_PACIENTE_EXAMEN" FromRole="EXAMEN" ToRole="EXAMEN_PACIENTE" />
+        </EntityType>
+        <EntityType Name="PACIENTE">
+          <Key>
+            <PropertyRef Name="ID_PACIENTE" />
+          </Key>
+          <Property Name="ID_PACIENTE" Type="Int32" Nullable="false" />
+          <Property Name="PRIMER_NOMBRE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SEGUNDO_NOMBRE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PRIMER_APELLIDO" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SEGUNDO_APELLIDO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EDAD" Type="Int32" Nullable="false" />
+          <Property Name="DIRECCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_NACIMIENTO" Type="DateTime" Precision="0" />
+          <Property Name="TELEFONO" Type="Int32" Nullable="false" />
+          <Property Name="CORREO_ELECTRONICO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID_SUCURSAL" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CITAS" Relationship="DBClinicaModel.FK_CITAS_PACIENTES" FromRole="PACIENTE" ToRole="CITAS" />
+          <NavigationProperty Name="SUCURSAL" Relationship="DBClinicaModel.FK_PACIENTE_SUCURSAL" FromRole="PACIENTE" ToRole="SUCURSAL" />
+          <NavigationProperty Name="EXAMEN_PACIENTE" Relationship="DBClinicaModel.FK_EXAMEN_PACIENTE_PACIENTES" FromRole="PACIENTE" ToRole="EXAMEN_PACIENTE" />
+          <NavigationProperty Name="PACIENTE_HABITACION" Relationship="DBClinicaModel.FK_PACIENTE_HABITACION_PACIENTE" FromRole="PACIENTE" ToRole="PACIENTE_HABITACION" />
+        </EntityType>
+        <Association Name="FK_CITAS_PACIENTES">
+          <End Type="DBClinicaModel.PACIENTE" Role="PACIENTE" Multiplicity="1" />
+          <End Type="DBClinicaModel.CITAS" Role="CITAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PACIENTE">
+              <PropertyRef Name="ID_PACIENTE" />
+            </Principal>
+            <Dependent Role="CITAS">
+              <PropertyRef Name="ID_PACIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PACIENTE_SUCURSAL">
+          <End Type="DBClinicaModel.SUCURSAL" Role="SUCURSAL" Multiplicity="1" />
+          <End Type="DBClinicaModel.PACIENTE" Role="PACIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUCURSAL">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Principal>
+            <Dependent Role="PACIENTE">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="ID_USUARIO" />
+          </Key>
+          <Property Name="ID_USUARIO" Type="Int32" Nullable="false" />
+          <Property Name="PRIMER_NOMBRE" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="SEGUNDO_NOMBRE" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="PRIMER_APELLIDO" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="SEGUNDO_APELLIDO" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="USERC" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EDAD" Type="Int32" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Precision="0" />
+          <Property Name="ESTADO" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="PUESTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GENERO" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ID_SUCURSAL" Type="Int32" />
+          <NavigationProperty Name="SUCURSAL" Relationship="DBClinicaModel.FK_USUARIO_SUCURSAL" FromRole="USUARIO" ToRole="SUCURSAL" />
+          <NavigationProperty Name="ROL_OPERACION" Relationship="DBClinicaModel.FK_ROL_OPERACION_USUARIO" FromRole="USUARIO" ToRole="ROL_OPERACION" />
+        </EntityType>
+        <Association Name="FK_USUARIO_SUCURSAL">
+          <End Type="DBClinicaModel.SUCURSAL" Role="SUCURSAL" Multiplicity="0..1" />
+          <End Type="DBClinicaModel.USUARIO" Role="USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUCURSAL">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Principal>
+            <Dependent Role="USUARIO">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ROL_OPERACION_USUARIO">
+          <End Type="DBClinicaModel.USUARIO" Role="USUARIO" Multiplicity="1" />
+          <End Type="DBClinicaModel.ROL_OPERACION" Role="ROL_OPERACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="ROL_OPERACION">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="HABITACION">
+          <Key>
+            <PropertyRef Name="ID_HABITACION" />
+          </Key>
+          <Property Name="ID_HABITACION" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE_HABITACION" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPCION" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAPACIDAD" Type="Int32" Nullable="false" />
+          <Property Name="ESTADO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PACIENTE_HABITACION" Relationship="DBClinicaModel.FK_PACIENTE_HABITACION_HABITACION" FromRole="HABITACION" ToRole="PACIENTE_HABITACION" />
+        </EntityType>
+        <EntityType Name="OPERACION">
+          <Key>
+            <PropertyRef Name="ID_OPERACION" />
+          </Key>
+          <Property Name="ID_OPERACION" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MODULO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ROL_OPERACION" Relationship="DBClinicaModel.FK_ROL_OPERACION_OPERACION" FromRole="OPERACION" ToRole="ROL_OPERACION" />
+        </EntityType>
+        <Association Name="FK_ROL_OPERACION_OPERACION">
+          <End Type="DBClinicaModel.OPERACION" Role="OPERACION" Multiplicity="1" />
+          <End Type="DBClinicaModel.ROL_OPERACION" Role="ROL_OPERACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OPERACION">
+              <PropertyRef Name="ID_OPERACION" />
+            </Principal>
+            <Dependent Role="ROL_OPERACION">
+              <PropertyRef Name="ID_OPERACION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EXAMEN_PACIENTE">
+          <Key>
+            <PropertyRef Name="ID_EXAMEN_PACIENTE" />
+          </Key>
+          <Property Name="ID_EXAMEN_PACIENTE" Type="Int32" Nullable="false" />
+          <Property Name="ID_EXAMEN" Type="Int32" Nullable="false" />
+          <Property Name="ID_PACIENTE" Type="Int32" Nullable="false" />
+          <Property Name="FECHA_REALIZO" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ENCARGADO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EXAMEN" Relationship="DBClinicaModel.FK_EXAMEN_PACIENTE_EXAMEN" FromRole="EXAMEN_PACIENTE" ToRole="EXAMEN" />
+          <NavigationProperty Name="PACIENTE" Relationship="DBClinicaModel.FK_EXAMEN_PACIENTE_PACIENTES" FromRole="EXAMEN_PACIENTE" ToRole="PACIENTE" />
+        </EntityType>
+        <Association Name="FK_EXAMEN_PACIENTE_EXAMEN">
+          <End Type="DBClinicaModel.EXAMEN" Role="EXAMEN" Multiplicity="1" />
+          <End Type="DBClinicaModel.EXAMEN_PACIENTE" Role="EXAMEN_PACIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EXAMEN">
+              <PropertyRef Name="ID_EXAMEN" />
+            </Principal>
+            <Dependent Role="EXAMEN_PACIENTE">
+              <PropertyRef Name="ID_EXAMEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EXAMEN_PACIENTE_PACIENTES">
+          <End Type="DBClinicaModel.PACIENTE" Role="PACIENTE" Multiplicity="1" />
+          <End Type="DBClinicaModel.EXAMEN_PACIENTE" Role="EXAMEN_PACIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PACIENTE">
+              <PropertyRef Name="ID_PACIENTE" />
+            </Principal>
+            <Dependent Role="EXAMEN_PACIENTE">
+              <PropertyRef Name="ID_PACIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PACIENTE_HABITACION">
+          <Key>
+            <PropertyRef Name="ID_PACIENTE_HABITACION" />
+          </Key>
+          <Property Name="ID_PACIENTE_HABITACION" Type="Int32" Nullable="false" />
+          <Property Name="ID_PACIENTE" Type="Int32" Nullable="false" />
+          <Property Name="ID_HABITACION" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_Estancia" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="HABITACION" Relationship="DBClinicaModel.FK_PACIENTE_HABITACION_HABITACION" FromRole="PACIENTE_HABITACION" ToRole="HABITACION" />
+          <NavigationProperty Name="PACIENTE" Relationship="DBClinicaModel.FK_PACIENTE_HABITACION_PACIENTE" FromRole="PACIENTE_HABITACION" ToRole="PACIENTE" />
+        </EntityType>
+        <Association Name="FK_PACIENTE_HABITACION_HABITACION">
+          <End Type="DBClinicaModel.HABITACION" Role="HABITACION" Multiplicity="1" />
+          <End Type="DBClinicaModel.PACIENTE_HABITACION" Role="PACIENTE_HABITACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HABITACION">
+              <PropertyRef Name="ID_HABITACION" />
+            </Principal>
+            <Dependent Role="PACIENTE_HABITACION">
+              <PropertyRef Name="ID_HABITACION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PACIENTE_HABITACION_PACIENTE">
+          <End Type="DBClinicaModel.PACIENTE" Role="PACIENTE" Multiplicity="1" />
+          <End Type="DBClinicaModel.PACIENTE_HABITACION" Role="PACIENTE_HABITACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PACIENTE">
+              <PropertyRef Name="ID_PACIENTE" />
+            </Principal>
+            <Dependent Role="PACIENTE_HABITACION">
+              <PropertyRef Name="ID_PACIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBClinicaModelStoreContainer" CdmEntityContainer="DBClinicaEntities">
+          <EntitySetMapping Name="CITAS">
+            <EntityTypeMapping TypeName="DBClinicaModel.CITAS">
+              <MappingFragment StoreEntitySet="CITAS">
+                <ScalarProperty Name="ID_CITA" ColumnName="ID_CITA" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="OBOSERVACIONES" ColumnName="OBOSERVACIONES" />
+                <ScalarProperty Name="ID_PACIENTE" ColumnName="ID_PACIENTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MEDICINA">
+            <EntityTypeMapping TypeName="DBClinicaModel.MEDICINA">
+              <MappingFragment StoreEntitySet="MEDICINA">
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="ID_MEDICINA" ColumnName="ID_MEDICINA" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROL">
+            <EntityTypeMapping TypeName="DBClinicaModel.ROL">
+              <MappingFragment StoreEntitySet="ROL">
+                <ScalarProperty Name="ID_ROL" ColumnName="ID_ROL" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="AREA" ColumnName="AREA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SUCURSAL">
+            <EntityTypeMapping TypeName="DBClinicaModel.SUCURSAL">
+              <MappingFragment StoreEntitySet="SUCURSAL">
+                <ScalarProperty Name="ID_SUCURSAL" ColumnName="ID_SUCURSAL" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_INVENTARIO">
+            <EntityTypeMapping TypeName="DBClinicaModel.TIPO_INVENTARIO">
+              <MappingFragment StoreEntitySet="TIPO_INVENTARIO">
+                <ScalarProperty Name="ID_TIPO_INVENTARIO" ColumnName="ID_TIPO_INVENTARIO" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INVENTARIO">
+            <EntityTypeMapping TypeName="DBClinicaModel.INVENTARIO">
+              <MappingFragment StoreEntitySet="INVENTARIO">
+                <ScalarProperty Name="ID_TIPO_INVENTARIO" ColumnName="ID_TIPO_INVENTARIO" />
+                <ScalarProperty Name="ID_MEDICINA" ColumnName="ID_MEDICINA" />
+                <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+                <ScalarProperty Name="ID_SUCURSAL" ColumnName="ID_SUCURSAL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROL_OPERACION">
+            <EntityTypeMapping TypeName="DBClinicaModel.ROL_OPERACION">
+              <MappingFragment StoreEntitySet="ROL_OPERACION">
+                <ScalarProperty Name="ID_ROL" ColumnName="ID_ROL" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="ID_OPERACION" ColumnName="ID_OPERACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EXAMEN">
+            <EntityTypeMapping TypeName="DBClinicaModel.EXAMEN">
+              <MappingFragment StoreEntitySet="EXAMEN">
+                <ScalarProperty Name="TRATAMIENTO" ColumnName="TRATAMIENTO" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="RECOMENDACION" ColumnName="RECOMENDACION" />
+                <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
+                <ScalarProperty Name="NOMBRE_EXAMEN" ColumnName="NOMBRE_EXAMEN" />
+                <ScalarProperty Name="ID_EXAMEN" ColumnName="ID_EXAMEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PACIENTE">
+            <EntityTypeMapping TypeName="DBClinicaModel.PACIENTE">
+              <MappingFragment StoreEntitySet="PACIENTE">
+                <ScalarProperty Name="ID_SUCURSAL" ColumnName="ID_SUCURSAL" />
+                <ScalarProperty Name="CORREO_ELECTRONICO" ColumnName="CORREO_ELECTRONICO" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="FECHA_NACIMIENTO" ColumnName="FECHA_NACIMIENTO" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="EDAD" ColumnName="EDAD" />
+                <ScalarProperty Name="SEGUNDO_APELLIDO" ColumnName="SEGUNDO_APELLIDO" />
+                <ScalarProperty Name="PRIMER_APELLIDO" ColumnName="PRIMER_APELLIDO" />
+                <ScalarProperty Name="SEGUNDO_NOMBRE" ColumnName="SEGUNDO_NOMBRE" />
+                <ScalarProperty Name="PRIMER_NOMBRE" ColumnName="PRIMER_NOMBRE" />
+                <ScalarProperty Name="ID_PACIENTE" ColumnName="ID_PACIENTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIO">
+            <EntityTypeMapping TypeName="DBClinicaModel.USUARIO">
+              <MappingFragment StoreEntitySet="USUARIO">
+                <ScalarProperty Name="ID_SUCURSAL" ColumnName="ID_SUCURSAL" />
+                <ScalarProperty Name="GENERO" ColumnName="GENERO" />
+                <ScalarProperty Name="PUESTO" ColumnName="PUESTO" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="EDAD" ColumnName="EDAD" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="USERC" ColumnName="USERC" />
+                <ScalarProperty Name="SEGUNDO_APELLIDO" ColumnName="SEGUNDO_APELLIDO" />
+                <ScalarProperty Name="PRIMER_APELLIDO" ColumnName="PRIMER_APELLIDO" />
+                <ScalarProperty Name="SEGUNDO_NOMBRE" ColumnName="SEGUNDO_NOMBRE" />
+                <ScalarProperty Name="PRIMER_NOMBRE" ColumnName="PRIMER_NOMBRE" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HABITACION">
+            <EntityTypeMapping TypeName="DBClinicaModel.HABITACION">
+              <MappingFragment StoreEntitySet="HABITACION">
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="CAPACIDAD" ColumnName="CAPACIDAD" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="NOMBRE_HABITACION" ColumnName="NOMBRE_HABITACION" />
+                <ScalarProperty Name="ID_HABITACION" ColumnName="ID_HABITACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OPERACION">
+            <EntityTypeMapping TypeName="DBClinicaModel.OPERACION">
+              <MappingFragment StoreEntitySet="OPERACION">
+                <ScalarProperty Name="MODULO" ColumnName="MODULO" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="ID_OPERACION" ColumnName="ID_OPERACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EXAMEN_PACIENTE">
+            <EntityTypeMapping TypeName="DBClinicaModel.EXAMEN_PACIENTE">
+              <MappingFragment StoreEntitySet="EXAMEN_PACIENTE">
+                <ScalarProperty Name="ENCARGADO" ColumnName="ENCARGADO" />
+                <ScalarProperty Name="FECHA_REALIZO" ColumnName="FECHA_REALIZO" />
+                <ScalarProperty Name="ID_PACIENTE" ColumnName="ID_PACIENTE" />
+                <ScalarProperty Name="ID_EXAMEN" ColumnName="ID_EXAMEN" />
+                <ScalarProperty Name="ID_EXAMEN_PACIENTE" ColumnName="ID_EXAMEN_PACIENTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PACIENTE_HABITACION">
+            <EntityTypeMapping TypeName="DBClinicaModel.PACIENTE_HABITACION">
+              <MappingFragment StoreEntitySet="PACIENTE_HABITACION">
+                <ScalarProperty Name="Fecha_Estancia" ColumnName="Fecha_Estancia" />
+                <ScalarProperty Name="ID_HABITACION" ColumnName="ID_HABITACION" />
+                <ScalarProperty Name="ID_PACIENTE" ColumnName="ID_PACIENTE" />
+                <ScalarProperty Name="ID_PACIENTE_HABITACION" ColumnName="ID_PACIENTE_HABITACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

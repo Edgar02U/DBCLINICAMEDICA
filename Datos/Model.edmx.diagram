@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ed5bd9b6a7434efd880ff8ec5885c510" Name="Diagram1">
+        <EntityTypeShape EntityType="DBClinicaModel.CITAS" Width="1.5" PointX="5.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBClinicaModel.MEDICINA" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBClinicaModel.ROL" Width="1.5" PointX="3" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBClinicaModel.SUCURSAL" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBClinicaModel.TIPO_INVENTARIO" Width="1.5" PointX="5.75" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBClinicaModel.INVENTARIO" Width="1.5" PointX="8" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBClinicaModel.ROL_OPERACION" Width="1.5" PointX="5.25" PointY="13" IsExpanded="true" />
+        <AssociationConnector Association="DBClinicaModel.FK_INVENTARIO_MEDICINA" ManuallyRouted="false" />
+        <AssociationConnector Association="DBClinicaModel.FK_ROL_OPERACION_ROL" ManuallyRouted="false" />
+        <AssociationConnector Association="DBClinicaModel.FK_INVENTARIO_SUCURSAL" ManuallyRouted="false" />
+        <AssociationConnector Association="DBClinicaModel.FK_INVENTARIO_TIPO_INVENTARIO" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DBClinicaModel.EXAMEN" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="DBClinicaModel.PACIENTE" Width="1.5" PointX="3" PointY="4.75" />
+        <AssociationConnector Association="DBClinicaModel.FK_CITAS_PACIENTES" />
+        <AssociationConnector Association="DBClinicaModel.FK_PACIENTE_SUCURSAL" />
+        <EntityTypeShape EntityType="DBClinicaModel.USUARIO" Width="1.5" PointX="3" PointY="9.75" />
+        <AssociationConnector Association="DBClinicaModel.FK_USUARIO_SUCURSAL" />
+        <AssociationConnector Association="DBClinicaModel.FK_ROL_OPERACION_USUARIO" />
+        <EntityTypeShape EntityType="DBClinicaModel.HABITACION" Width="1.5" PointX="7.375" PointY="3.875" />
+        <EntityTypeShape EntityType="DBClinicaModel.OPERACION" Width="1.5" PointX="8.375" PointY="0.875" />
+        <AssociationConnector Association="DBClinicaModel.FK_ROL_OPERACION_OPERACION" />
+        <EntityTypeShape EntityType="DBClinicaModel.EXAMEN_PACIENTE" Width="1.5" PointX="5.625" PointY="3.5" />
+        <AssociationConnector Association="DBClinicaModel.FK_EXAMEN_PACIENTE_EXAMEN" />
+        <AssociationConnector Association="DBClinicaModel.FK_EXAMEN_PACIENTE_PACIENTES" />
+        <EntityTypeShape EntityType="DBClinicaModel.PACIENTE_HABITACION" Width="2.25" PointX="9.625" PointY="5.125" />
+        <AssociationConnector Association="DBClinicaModel.FK_PACIENTE_HABITACION_HABITACION" />
+        <AssociationConnector Association="DBClinicaModel.FK_PACIENTE_HABITACION_PACIENTE" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
