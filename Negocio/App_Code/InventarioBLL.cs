@@ -16,5 +16,10 @@ namespace Negocio.App_Code
         {
             return obj.ListInventario();
         }
+
+        public static List<ModelInventario> ListInvetarios()
+        {
+            return obj.ListInventarios();
+        }
     }
 }

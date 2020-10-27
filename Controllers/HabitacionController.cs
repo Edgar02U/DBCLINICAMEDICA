@@ -15,7 +15,7 @@ namespace WebClinicaMedica.Controllers
         {
             return View();
         }
-        //------------------------- Habitacion-----------------
+        
         public ActionResult Habitacion()
         {
             var _habitacion = HabitacionBLL.ListHabitacion();

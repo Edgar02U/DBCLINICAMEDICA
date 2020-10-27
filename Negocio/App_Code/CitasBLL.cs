@@ -17,5 +17,10 @@ namespace Negocio.App_Code
         {
             return obj.ListCita();
         }   
+
+        public static List<ModelCitas> List_Citas()
+        {
+            return obj.ListCitas();
+        }
     }
 }

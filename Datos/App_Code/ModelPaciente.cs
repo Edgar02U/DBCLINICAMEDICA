@@ -19,6 +19,6 @@ namespace Datos.App_Code
         public Nullable<System.DateTime> FECHA_NACIMIENTO { get; set; }
         public Nullable<int> TELEFONO { get; set; }
         public string CORREO_ELECTRONICO { get; set; }
-        public Nullable<int> ID_SUCURSAL { get; set; }
+        public string SUCURSAL { get; set; }
     }
 }

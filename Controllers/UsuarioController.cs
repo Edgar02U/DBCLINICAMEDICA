@@ -16,7 +16,7 @@ namespace WebClinicaMedica.Controllers
             return View();
         }
 
-        //------------------------- Usuario-----------------
+        
         public ActionResult Usuario()
         {
             var _usuario = UsuarioBLL.ListUsuario();

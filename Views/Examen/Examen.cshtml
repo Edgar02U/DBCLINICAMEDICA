@@ -12,7 +12,10 @@
         <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Examen <a title="Nuevo" class="btn btn-default btn-sm checkbox-toggle" href="Create"><i class="fa fa-file-o"> Nuevo </i></a></h3>
+                    <h3 class="box-title">
+                        Examen <a title="Nuevo" class="btn btn-default btn-sm checkbox-toggle" href="Create"><i class="fa fa-file-o"> Nuevo </i></a>
+                             <a title="Eliminar" class="btn btn-default btn-sm checkbox-toggle" href="Delete"><i class="fa fa-file-o"> Eliminar </i></a>
+                    </h3>
                 </div><!-- /.box-header -->
                 <div class="box-body no-padding">
                     <div class="table-responsive mailbox-messages">
@@ -45,10 +48,6 @@
                                         <td>@Html.DisplayFor(modeltem => item.DESCRIPCION)</td>
 
                                         <td>@Html.DisplayFor(modeltem => item.TRATAMIENTO)</td>
-                                        <td>
-                                            <button title="Editar" onclick="location.href='@Url.Action("Edit", new { id = item.ID_EXAMEN })';return false;" class="btn btn-default btn-sm"><i class="fa fa-pencil">Editar</i></button>
-                                            <button title="Eliminar" onclick="location.href='@Url.Action("Delete", new { id = item.ID_EXAMEN})'; return false;" class="btn btn-default btn-sm"><i class="fa fa-trash-o">Eliminar</i></button>
-                                        </td>
                                     </tr>
                                 }
                             </tbody>

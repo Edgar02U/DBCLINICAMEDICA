@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace WebClinicaMedica.Controllers
@@ -17,18 +18,11 @@ namespace WebClinicaMedica.Controllers
             return View(_cita);
         }
 
-        //get create
-        public ActionResult Create()
+        public JsonResult Citas_()
         {
-            return View();
-        }
+            var data = CitasBLL.List_Citas();
 
-        //post create
-        //[HttpPost]
-        //public ActionResult Create([Bind(Exclude ="ID_CITA")])
-        //{
-            
-        //    return RedirectToAction("Cita");
-        //}
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
     }
 }

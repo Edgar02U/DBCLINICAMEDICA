@@ -15,7 +15,7 @@ namespace WebClinicaMedica.Controllers
         {
             return View();
         }
-        //------------------------- Examen-----------------
+        
         public ActionResult Examen()
         {
             var _examen = ExamenBLL.ListExamen();

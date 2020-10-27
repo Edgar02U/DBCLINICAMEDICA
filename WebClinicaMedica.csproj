@@ -224,7 +224,7 @@
     <Content Include="webfonts\fa-brands-400.ttf" />
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="Views\Cita\Cita.cshtml" />
-    <Content Include="Views\Paciente\Pacientes.cshtml" />
+    <Content Include="Views\Paciente\Paciente.cshtml" />
     <Content Include="Views\Medicina\Medicina.cshtml" />
     <Content Include="Views\Sucursal\Sucursal.cshtml" />
     <Content Include="Views\Usuario\Usuario.cshtml" />
@@ -233,7 +233,8 @@
     <Content Include="Views\ExamenPaciente\Examen_Paciente.cshtml" />
     <Content Include="Views\Inventario\Inventario.cshtml" />
     <Content Include="Views\Paciente_Habitacion\Paciente_Habitacion.cshtml" />
-    <Content Include="Views\Cita\Create.cshtml" />
+    <Content Include="Views\Paciente\Create.cshtml" />
+    <Content Include="Views\Paciente\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

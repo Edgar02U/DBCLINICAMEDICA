@@ -16,7 +16,7 @@ namespace WebClinicaMedica.Controllers
             return View();
         }
 
-        //------------------------- Sucursal-----------------
+        
         public ActionResult Sucursal()
         {
             var _sucursal = SucuarsalBLL.ListSucursal();

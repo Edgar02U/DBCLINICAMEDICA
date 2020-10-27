@@ -16,7 +16,7 @@ namespace WebClinicaMedica.Controllers
             return View();
         }
 
-        //------------------------- Medicina-----------------
+
         public ActionResult Medicina()
         {
             var _mecicina = MedicinaBLL.ListMedicina();

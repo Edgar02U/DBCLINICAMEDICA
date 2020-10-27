@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="ID_CITA" />
           </Key>
-          <Property Name="ID_CITA" Type="int" Nullable="false" />
+          <Property Name="ID_CITA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FECHA" Type="date" Nullable="false" />
           <Property Name="OBOSERVACIONES" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="ID_PACIENTE" Type="int" Nullable="false" />
@@ -18,7 +18,7 @@
           <Key>
             <PropertyRef Name="ID_EXAMEN" />
           </Key>
-          <Property Name="ID_EXAMEN" Type="int" Nullable="false" />
+          <Property Name="ID_EXAMEN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NOMBRE_EXAMEN" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="PRECIO" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="RECOMENDACION" Type="varchar" MaxLength="150" />
@@ -29,7 +29,7 @@
           <Key>
             <PropertyRef Name="ID_EXAMEN_PACIENTE" />
           </Key>
-          <Property Name="ID_EXAMEN_PACIENTE" Type="int" Nullable="false" />
+          <Property Name="ID_EXAMEN_PACIENTE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_EXAMEN" Type="int" Nullable="false" />
           <Property Name="ID_PACIENTE" Type="int" Nullable="false" />
           <Property Name="FECHA_REALIZO" Type="date" Nullable="false" />
@@ -39,7 +39,7 @@
           <Key>
             <PropertyRef Name="ID_HABITACION" />
           </Key>
-          <Property Name="ID_HABITACION" Type="int" Nullable="false" />
+          <Property Name="ID_HABITACION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NOMBRE_HABITACION" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CAPACIDAD" Type="int" Nullable="false" />
@@ -63,7 +63,7 @@ advertencia 6002: La tabla o vista 'DBClinica.dbo.INVENTARIO' no tiene definida 
           <Key>
             <PropertyRef Name="ID_MEDICINA" />
           </Key>
-          <Property Name="ID_MEDICINA" Type="int" Nullable="false" />
+          <Property Name="ID_MEDICINA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NOMBRE" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="DESCRIPCION" Type="varchar" MaxLength="100" />
         </EntityType>
@@ -71,7 +71,7 @@ advertencia 6002: La tabla o vista 'DBClinica.dbo.INVENTARIO' no tiene definida 
           <Key>
             <PropertyRef Name="ID_OPERACION" />
           </Key>
-          <Property Name="ID_OPERACION" Type="int" Nullable="false" />
+          <Property Name="ID_OPERACION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NOMBRE" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="MODULO" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -79,7 +79,7 @@ advertencia 6002: La tabla o vista 'DBClinica.dbo.INVENTARIO' no tiene definida 
           <Key>
             <PropertyRef Name="ID_PACIENTE" />
           </Key>
-          <Property Name="ID_PACIENTE" Type="int" Nullable="false" />
+          <Property Name="ID_PACIENTE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PRIMER_NOMBRE" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="SEGUNDO_NOMBRE" Type="varchar" MaxLength="10" />
           <Property Name="PRIMER_APELLIDO" Type="varchar" MaxLength="10" Nullable="false" />
@@ -95,7 +95,7 @@ advertencia 6002: La tabla o vista 'DBClinica.dbo.INVENTARIO' no tiene definida 
           <Key>
             <PropertyRef Name="ID_PACIENTE_HABITACION" />
           </Key>
-          <Property Name="ID_PACIENTE_HABITACION" Type="int" Nullable="false" />
+          <Property Name="ID_PACIENTE_HABITACION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_PACIENTE" Type="int" Nullable="false" />
           <Property Name="ID_HABITACION" Type="int" Nullable="false" />
           <Property Name="Fecha_Estancia" Type="date" Nullable="false" />
@@ -104,7 +104,7 @@ advertencia 6002: La tabla o vista 'DBClinica.dbo.INVENTARIO' no tiene definida 
           <Key>
             <PropertyRef Name="ID_ROL" />
           </Key>
-          <Property Name="ID_ROL" Type="int" Nullable="false" />
+          <Property Name="ID_ROL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NOMBRE" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="AREA" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -124,7 +124,7 @@ advertencia 6002: La tabla o vista 'DBClinica.dbo.ROL_OPERACION' no tiene defini
           <Key>
             <PropertyRef Name="ID_SUCURSAL" />
           </Key>
-          <Property Name="ID_SUCURSAL" Type="int" Nullable="false" />
+          <Property Name="ID_SUCURSAL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NOMBRE" Type="varchar" MaxLength="50" />
           <Property Name="DIRECCION" Type="varchar" MaxLength="50" />
           <Property Name="TELEFONO" Type="int" />
@@ -133,14 +133,14 @@ advertencia 6002: La tabla o vista 'DBClinica.dbo.ROL_OPERACION' no tiene defini
           <Key>
             <PropertyRef Name="ID_TIPO_INVENTARIO" />
           </Key>
-          <Property Name="ID_TIPO_INVENTARIO" Type="int" Nullable="false" />
+          <Property Name="ID_TIPO_INVENTARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NOMBRE" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="USUARIO">
           <Key>
             <PropertyRef Name="ID_USUARIO" />
           </Key>
-          <Property Name="ID_USUARIO" Type="int" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PRIMER_NOMBRE" Type="varchar" MaxLength="45" />
           <Property Name="SEGUNDO_NOMBRE" Type="varchar" MaxLength="45" />
           <Property Name="PRIMER_APELLIDO" Type="varchar" MaxLength="45" />

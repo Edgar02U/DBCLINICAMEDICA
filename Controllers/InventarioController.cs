@@ -9,9 +9,7 @@ using System.Web.Mvc;
 namespace WebClinicaMedica.Controllers
 {
     public class InventarioController : Controller
-    {
-        INVENTARIO dbinv = new INVENTARIO();
-        
+    {       
         public ActionResult Inventario()
         {
             var _inventario = InventarioBLL.ListInventario();
@@ -19,6 +17,11 @@ namespace WebClinicaMedica.Controllers
             return View(_inventario);
         }
 
-        
+        public JsonResult Inventario_()
+        {
+            var data = InventarioBLL.ListInvetarios();
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
     }
 }

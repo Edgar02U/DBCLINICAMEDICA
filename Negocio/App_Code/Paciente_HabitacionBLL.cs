@@ -16,5 +16,10 @@ namespace Negocio.App_Code
         {
             return obj.ListPaciHabi();
         }
+
+        public static List<ModelPaciente_Habitacion> ListPaciHabis()
+        {
+            return obj.ListPaciHabis();
+        }
     }
 }

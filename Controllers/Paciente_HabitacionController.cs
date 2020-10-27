@@ -10,17 +10,18 @@ namespace WebClinicaMedica.Controllers
 {
     public class Paciente_HabitacionController : Controller
     {
-        // GET: Paciente_Habitacion
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         public ActionResult Paciente_Habitacion()
         {
             var _pacihabi = Paciente_HabitacionBLL.ListPaciHabi();
 
             return View(_pacihabi);
+        }
+
+        public JsonResult PaciHabi_()
+        {
+            var data = Paciente_HabitacionBLL.ListPaciHabis();
+
+            return Json(data, JsonRequestBehavior.AllowGet);
         }
     }
 }

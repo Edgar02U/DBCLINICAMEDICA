@@ -17,7 +17,6 @@ namespace WebClinicaMedica.Controllers
             return View();
         }
 
-        //------------------------- Examen Paciente-----------------
        
         public JsonResult ExamPaciente()
         {

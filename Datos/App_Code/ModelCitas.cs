@@ -11,6 +11,6 @@ namespace Datos.App_Code
         public int ID_CITA { get; set; }
         public System.DateTime FECHA { get; set; }
         public string OBOSERVACIONES { get; set; }
-        public int ID_PACIENTE { get; set; }
+        public string PACIENTE { get; set; }
     }
 }
