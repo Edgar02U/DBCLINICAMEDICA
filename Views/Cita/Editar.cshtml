@@ -1,0 +1,51 @@
+﻿@model Entidad.CITAS
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>CITA</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Fecha</label>
+            <div class="col-md-10">
+                <input id="FECHA" name="FECHA" class="form-control" placeholder="Fecha" />
+                @Html.ValidationMessageFor(model => model.FECHA, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Observaciones</label>
+            <div class="col-md-10">
+                <input id="OBOSERVACIONES" name="OBOSERVACIONES" class="form-control" placeholder="Observaciones" />
+                @Html.ValidationMessageFor(model => model.OBOSERVACIONES, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Paciente</label>
+            <div class="col-md-10">
+                <input id="ID_PACIENTE" name="ID_PACIENTE" class="form-control" placeholder="PACIENTE" />
+                @Html.ValidationMessageFor(model => model.ID_PACIENTE, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Crear" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    <button title="Regresar" onclick="location.href='@Url.Action("Cita")';return false;" class="btn btn-info"><i class="fa fa-reply"></i> Regresar</button>
+</div>

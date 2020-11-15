@@ -15,5 +15,29 @@ namespace Negocio.App_Code
         {
             return obj.ListSucursal();
         }
+
+        public static List<ModelSucursal> ListSucursales()
+        {
+            return obj.ListSucursales();
+        }
+
+        public static void Agregar(SUCURSAL sucursal)
+        {
+            obj.Agregar(sucursal);
+        }
+
+        public static SUCURSAL GetSucursal(int id)
+        {
+            return obj.getSucursal(id);
+        }
+
+        public static void Editar(SUCURSAL sucursal)
+        {
+            obj.Editar(sucursal);
+        }
+        public static void Eliminar(int id)
+        {
+            obj.Eliminar(id);
+        }
     }
 }

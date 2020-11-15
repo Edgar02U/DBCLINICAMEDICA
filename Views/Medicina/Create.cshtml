@@ -1,0 +1,46 @@
+﻿@model Entidad.MEDICINA
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<br />
+<br />
+<br />
+<br />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h3>Medicina</h3>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Nombre</label>
+        <div class="col-md-10">
+            <input id="NOMBRE" name="NOMBRE" class="form-control" placeholder="Nombre" />
+            @Html.ValidationMessageFor(model => model.NOMBRE, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Descripcion</label>
+        <div class="col-md-10">
+            <input id="DESCRIPCION" name="DESCRIPCION" class="form-control" placeholder="Descripcion" />
+            @Html.ValidationMessageFor(model => model.DESCRIPCION, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Crear" class="btn btn-info" />
+
+            <button title="Regresar" onclick="location.href='@Url.Action("Medicina")';return false;" class="btn btn-info"><i ></i> Regresar</button>
+        </div>
+    </div>
+</div>
+}

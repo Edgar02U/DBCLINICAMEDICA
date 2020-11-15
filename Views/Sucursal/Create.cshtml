@@ -1,0 +1,48 @@
+﻿@model Entidad.SUCURSAL
+
+
+<br />
+<br />
+<br />
+<br />
+<h2>Crear Sucursal</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Nombre Sucursal</label>
+        <div class="col-md-10">
+            <input id="NOMBRE" name="NOMBRE" class="form-control" placeholder="Nombre Sucursal" />
+            @Html.ValidationMessageFor(model => model.NOMBRE, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Direccion</label>
+        <div class="col-md-10">
+            <input id="DIRECCION" name="DIRECCION" class="form-control" placeholder="Direccion" />
+            @Html.ValidationMessageFor(model => model.DIRECCION, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Telefono</label>
+        <div class="col-md-10">
+            <input id="TELEFONO" name="TELEFONO" class="form-control" placeholder="Telefono" />
+            @Html.ValidationMessageFor(model => model.TELEFONO, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Crear" class="btn btn-info" />
+            <button title="Regresar" onclick="location.href='@Url.Action("Sucursal", "Sucursal")';return false;" class="btn btn-info"><i class="fa fa-reply"></i> Regresar</button>
+        </div>
+    </div>
+</div>
+}
+

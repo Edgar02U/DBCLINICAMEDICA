@@ -20,5 +20,24 @@ namespace Negocio.App_Code
         {
             return obj.ListExamenesPacientes();
         }
+
+        public static void Agregar(EXAMEN_PACIENTE examenPaciente)
+        {
+            obj.Agregar(examenPaciente);
+        }
+
+        public static EXAMEN_PACIENTE GetExamenPaciente(int id)
+        {
+            return obj.getExaPaci(id);
+        }
+
+        public static void Editar(EXAMEN_PACIENTE examenPaciente)
+        {
+            obj.Editar(examenPaciente);
+        }
+        public static void Eliminar(int id)
+        {
+            obj.Eliminar(id);
+        }
     }
 }

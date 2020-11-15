@@ -23,5 +23,30 @@ namespace WebClinicaMedica.Controllers
 
             return View(_mecicina);
         }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        public ActionResult Editar(int id)
+        {
+            var medicina = MedicinaBLL.GetMedicina(id);
+            return View("~/Views/Medicina/Editar.cshtml", medicina);
+        }
+
+        [HttpPost]
+        public ActionResult Editar(MEDICINA medicina)
+        {
+            return View(medicina);
+        }
+
+
+        [HttpPost]
+        public ActionResult Eliminar(int id)
+        {
+            PacientesBLL.Eliminar(id);
+            return View("~/Views/Medicina/Medicina.cshtml");
+        }
     }
 }

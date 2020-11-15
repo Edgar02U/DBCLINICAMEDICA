@@ -44,5 +44,46 @@ namespace Datos.App_Code
             }
             return PacienteHabitacion;
         }
+
+        public void Agregar(PACIENTE_HABITACION pacienteHabitacion)
+        {
+            using (DBClinicaEntities db = new DBClinicaEntities())
+            {
+                db.PACIENTE_HABITACION.Add(pacienteHabitacion);
+                db.SaveChanges();
+            }
+        }
+
+        public PACIENTE_HABITACION getPacienteHabitacion(int id)
+        {
+            using (DBClinicaEntities db = new DBClinicaEntities())
+            {
+                return db.PACIENTE_HABITACION.Find(id);
+                //return db.PACIENTE.Where(x => x.ID_PACIENTE ==id).FirstOrDefault();
+            }
+        }
+
+        public void Editar(PACIENTE_HABITACION pacienteHabitacion)
+        {
+            using (DBClinicaEntities db = new DBClinicaEntities())
+            {
+                var p = db.PACIENTE_HABITACION.Find(pacienteHabitacion.ID_PACIENTE_HABITACION);
+
+
+                p.ID_PACIENTE = pacienteHabitacion.ID_PACIENTE;
+                p.ID_HABITACION = pacienteHabitacion.ID_HABITACION;
+                p.Fecha_Estancia = pacienteHabitacion.Fecha_Estancia;
+                db.SaveChanges();
+            }
+        }
+        public void Eliminar(int id)
+        {
+            using (DBClinicaEntities db = new DBClinicaEntities())
+            {
+                var pac = db.PACIENTE_HABITACION.Find(id);
+                db.PACIENTE_HABITACION.Remove(pac);
+                db.SaveChanges();
+            }
+        }
     }
 }

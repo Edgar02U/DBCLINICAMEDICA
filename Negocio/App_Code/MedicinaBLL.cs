@@ -16,5 +16,24 @@ namespace Negocio.App_Code
             return obj.ListMedicina();
         }
 
+        public static void Agregar(MEDICINA medicina)
+        {
+            obj.Agregar(medicina);
+        }
+
+        public static MEDICINA GetMedicina(int id)
+        {
+            return obj.getMedicina(id);
+        }
+
+        public static void Editar(MEDICINA medicina)
+        {
+            obj.Editar(medicina);
+        }
+        public static void Eliminar(int id)
+        {
+            obj.Eliminar(id);
+        }
+
     }
 }

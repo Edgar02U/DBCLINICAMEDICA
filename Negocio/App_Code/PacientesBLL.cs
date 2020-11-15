@@ -29,14 +29,14 @@ namespace Negocio.App_Code
         {
              obj.Eliminar(id);
         }
-        public static List<PACIENTE> ListPaciente()
-        {
-            return obj.ListPaciente();
-        }
-
+        
         public static List<ModelPaciente> ListPacientes()
         {
             return obj.ListPacientes();
+        }
+        public static List<PACIENTE> ListPaciente()
+        {
+            return obj.ListPaciente();
         }
 
         public static SUCURSAL GetSucursal(int id)

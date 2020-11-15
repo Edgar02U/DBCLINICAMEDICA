@@ -1,4 +1,3 @@
-C:\Users\KIKAW\source\repos\WebClinicaMedica\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
 C:\Users\KIKAW\source\repos\WebClinicaMedica\Negocio\bin\Debug\Negocio.dll
 C:\Users\KIKAW\source\repos\WebClinicaMedica\Negocio\bin\Debug\Negocio.pdb
 C:\Users\KIKAW\source\repos\WebClinicaMedica\Negocio\bin\Debug\Datos.dll
@@ -9,6 +8,7 @@ C:\Users\KIKAW\source\repos\WebClinicaMedica\Negocio\bin\Debug\Datos.dll.config
 C:\Users\KIKAW\source\repos\WebClinicaMedica\Negocio\bin\Debug\Entidad.pdb
 C:\Users\KIKAW\source\repos\WebClinicaMedica\Negocio\bin\Debug\EntityFramework.xml
 C:\Users\KIKAW\source\repos\WebClinicaMedica\Negocio\obj\Debug\Negocio.csprojAssemblyReference.cache
+C:\Users\KIKAW\source\repos\WebClinicaMedica\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
 C:\Users\KIKAW\source\repos\WebClinicaMedica\Negocio\obj\Debug\Negocio.csproj.CopyComplete
 C:\Users\KIKAW\source\repos\WebClinicaMedica\Negocio\obj\Debug\Negocio.dll
 C:\Users\KIKAW\source\repos\WebClinicaMedica\Negocio\obj\Debug\Negocio.pdb

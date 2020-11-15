@@ -14,6 +14,7 @@ namespace Entidad
     
     public partial class INVENTARIO
     {
+        public int ID_INVENTARIO { get; set; }
         public int ID_TIPO_INVENTARIO { get; set; }
         public int ID_MEDICINA { get; set; }
         public int CANTIDAD { get; set; }

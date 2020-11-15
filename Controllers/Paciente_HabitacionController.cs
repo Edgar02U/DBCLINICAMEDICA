@@ -23,5 +23,36 @@ namespace WebClinicaMedica.Controllers
 
             return Json(data, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View("~/Views/Paciente_Habitacion/Create.cshtml");
+        }
+        [HttpPost]
+        public ActionResult Create(PACIENTE_HABITACION pacienteHabitacion)
+        {
+            Paciente_HabitacionBLL.Agregar(pacienteHabitacion);
+            return View("~/Views/Paciente_Habitacion/Paciente_Habitacion.cshtml", pacienteHabitacion);
+        }
+
+        public ActionResult Editar(int id)
+        {
+            var pacienteHabitacion = Paciente_HabitacionBLL.GetPaciHabit(id);
+            return View("~/Views/Paciente/Editar.cshtml", pacienteHabitacion);
+        }
+
+        [HttpPost]
+        public ActionResult Editar(PACIENTE_HABITACION pacienteHabitacion)
+        {
+            return View(pacienteHabitacion);
+        }
+
+        [HttpPost]
+        public ActionResult Eliminar(int id)
+        {
+            Paciente_HabitacionBLL.Eliminar(id);
+            return View("~/Views/Paciente_Habitacion/Paciente_Habitacion.cshtml");
+        }
     }
 }

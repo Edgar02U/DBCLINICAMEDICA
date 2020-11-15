@@ -1,0 +1,112 @@
+﻿@model Entidad.USUARIO
+
+
+<br />
+<br />
+<br />
+<br />
+<h2>Crear Usuario</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Primer Nombre</label>
+        <div class="col-md-10">
+            <input id="PRIMER_NOMBRE" name="PRIMER_NOMBRE" class="form-control" placeholder="Primer Nombre" />
+            @Html.ValidationMessageFor(model => model.PRIMER_NOMBRE, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Segundo Nombre</label>
+        <div class="col-md-10">
+            <input id="SEGUNDO_NOMBRE" name="SEGUNDO_NOMBRE" class="form-control" placeholder="Segundo Nombre" />
+            @Html.ValidationMessageFor(model => model.SEGUNDO_NOMBRE, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Primer Apellido</label>
+        <div class="col-md-10">
+            <input id="PRIMER_APELLIDO" name="PRIMER_APELLIDO" class="form-control" placeholder="Primer Apellido" />
+            @Html.ValidationMessageFor(model => model.PRIMER_APELLIDO, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Segundo Apellido</label>
+        <div class="col-md-10">
+            <input id="SEGUNDO_APELLIDO" name="SEGUNDO_APELLIDO" class="form-control" placeholder="Segundo Apellido" />
+            @Html.ValidationMessageFor(model => model.SEGUNDO_APELLIDO, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Usuario</label>
+        <div class="col-md-10">
+            <input id="USERC" name="USERC" class="form-control" placeholder="Usuario" />
+            @Html.ValidationMessageFor(model => model.USERC, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Contraseña</label>
+        <div class="col-md-10">
+            <input id="PASSWORD" name="PASSWORD" class="form-control" placeholder="Contraseña" />
+            @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Edad</label>
+        <div class="col-md-10">
+            <input id="EDAD" name="EDAD" class="form-control" placeholder="Edad" />
+            @Html.ValidationMessageFor(model => model.EDAD, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Fecha Creacion</label>
+        <div class="col-md-10">
+            <input id="FECHA_CREACION" name="FECHA_CREACION" class="form-control" placeholder="Fecha Creacion" />
+            @Html.ValidationMessageFor(model => model.FECHA_CREACION, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Estado</label>
+        <div class="col-md-10">
+            <input id="ESTADO" name="ESTADO" class="form-control" placeholder="Estado" />
+            @Html.ValidationMessageFor(model => model.ESTADO, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Puesto</label>
+        <div class="col-md-10">
+            <input id="PUESTO" name="PUESTO" class="form-control" placeholder="Puesto" />
+            @Html.ValidationMessageFor(model => model.PUESTO, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Genero</label>
+        <div class="col-md-10">
+            <input id="GENERO" name="GENERO" class="form-control" placeholder="Genero" />
+            @Html.ValidationMessageFor(model => model.GENERO, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Sucursal</label>
+        <div class="col-md-10">
+            <input id="ID_SUCURSAL" name="ID_SUCURSAL" class="form-control" placeholder="Sucursal" />
+            @Html.ValidationMessageFor(model => model.ID_SUCURSAL, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Crear" class="btn btn-info" />
+            <button title="Regresar" onclick="location.href='@Url.Action("Usuario", "Usuario")';return false;" class="btn btn-info"><i class="fa fa-reply"></i> Regresar</button>
+        </div>
+    </div>
+</div>
+}

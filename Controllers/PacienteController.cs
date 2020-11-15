@@ -16,28 +16,19 @@ namespace WebClinicaMedica.Controllers
             return View(_pacientes);
         }
 
+        [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            return View("~/Views/Paciente/Create.cshtml");
+        }
+        [HttpPost]
+        public ActionResult Create(PACIENTE paciente)
+        {
+            PacientesBLL.Agregar(paciente);  
+            return View("~/Views/Paciente/Paciente.cshtml", paciente);
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create(PACIENTE paciente)
-        //{
-        //    try
-        //    {
-        //        PacientesBLL.Agregar(paciente);
-        //        return RedirectToAction("Paciente");
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        ModelState.AddModelError("","Ocurrio un error al agregar un paciente");
-        //        return View();
-        //    }
-        //}
-
+        [HttpGet]
         public ActionResult Editar(int id)
         {
             var paciente = PacientesBLL.GetPaciente(id);
@@ -56,7 +47,22 @@ namespace WebClinicaMedica.Controllers
             PacientesBLL.Eliminar(id);
             return View("~/Views/Paciente/Paciente.cshtml");
         }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create(PACIENTE paciente)
+        //{
+        //    try
+        //    {
+        //        PacientesBLL.Agregar(paciente);
+        //        return RedirectToAction("Paciente");
+        //    }
+        //    catch (Exception ex)
+        //    {
 
+        //        ModelState.AddModelError("","Ocurrio un error al agregar un paciente");
+        //        return View();
+        //    }
+        //}
         public JsonResult Paciente_()
         {
             var data = PacientesBLL.ListPacientes();

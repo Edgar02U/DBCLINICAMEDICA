@@ -1,0 +1,55 @@
+﻿@model Entidad.INVENTARIO
+
+<br />
+<br />
+<br />
+<br />
+<h2>Crear Inventario</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Id Tipo de Inventario</label>
+        <div class="col-md-10">
+            <input id="ID_TIPO_INVENTARIO" name="ID_TIPO_INVENTARIO" class="form-control" placeholder="Id Tipo de Inventario" />
+            @Html.ValidationMessageFor(model => model.ID_TIPO_INVENTARIO, "", new { @class = "text-danger" })
+        </div>
+    </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Nombre Medicina</label>
+            <div class="col-md-10">
+                <input id="ID_MEDICINA" name="ID_MEDICINA" class="form-control" placeholder="Nombre Medicina" />
+                @Html.ValidationMessageFor(model => model.ID_MEDICINA, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Cantidad</label>
+            <div class="col-md-10">
+                <input id="CANTIDAD" name="CANTIDAD" class="form-control" placeholder="Cantidad" />
+                @Html.ValidationMessageFor(model => model.CANTIDAD, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Nombre Sucursal</label>
+            <div class="col-md-10">
+                <input id="ID_SUCURSAL" name="ID_SUCURSAL" class="form-control" placeholder="Nombre Sucursal" />
+                @Html.ValidationMessageFor(model => model.ID_SUCURSAL, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Crear" class="btn btn-info" />
+                <button title="Regresar" onclick="location.href='@Url.Action("Inventario", "Inventario")';return false;" class="btn btn-info"><i class="fa fa-reply"></i> Regresar</button>
+            </div>
+        </div>
+    </div>
+}

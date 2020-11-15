@@ -1,0 +1,115 @@
+﻿@model Entidad.MEDICINA
+
+@Styles.Render("~/bundles/css")
+@Scripts.Render("~/bundles/script")
+
+<form id="formularioDatos">
+
+
+    @Html.AntiForgeryToken()
+
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Actualizar Tarea</h3>
+
+                </div>
+
+            </div>
+            <div class="col-sm-12">
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <label>NOMBRE:</label>
+                    <input id="NOMBRE" name="NOMBRE" class="form-control" value="@Model.NOMBRE" required />
+
+                    <label>DESCRIPCION:</label>
+                    <input id="DESCRIPCION" name="DESCRIPCION" class="form-control" value="@Model.DESCRIPCION" required />
+
+                    <br />
+
+                    <div class="form-group">
+                        <div class="col-md-8 ">
+                            <input type="submit" value="Actualizar" class="btn btn-info" />
+                            <button title="Regresar" onclick="location.href='@Url.Action("Medicina")';return false;" class="btn btn-info"><i class="fa fa-reply"></i> Regresar</button>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div><!-- /.mail-box-messages -->
+        </div><!-- /.box <input type="submit" id="btnNuevo" value="Guardar"  class="btn btn-primary" />-body -->
+        <div class="box-footer no-padding">
+
+        </div>
+    </div><!-- /. box -->
+</form>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#formularioDatos').submit(function () {
+            $.confirm({
+                title: 'Actualizar!',
+                content: '¿Seguro desea actualizar este registro?',
+                type: 'blue',
+                icon: 'fa fa-floppy-o',
+                typeAnimated: true,
+                buttons: {
+                    tryAgain: {
+                        text: 'Actualizar',
+                        btnClass: 'btn-blue',
+                        action: function () {
+                            var miUrl = '@Url.Action("Editar")'
+                            $.ajax({
+                                url: miUrl,
+                                method: "POST",
+                                data: $('#formularioDatos').serialize(),
+                                success: function (data) {
+                                    window.location.href='@Url.Action("Medicina")';
+                                }
+                            });
+                        }
+                    },
+                    cerrar: function () {
+                    }
+                }
+            });
+            return false;
+        });
+    });
+
+    function GetSolicitudes(valor) {
+            let servicio = $('#ID_MEDICINA').val();
+
+            let miUrl = '@Url.Action("GetMedicina", "MEDICINA")';
+            $.ajax({
+                url: miUrl,
+                method: "GET",
+                data: { servicio: servicio },
+                success: function (data) {
+                    $('#ID_MEDICINA').empty();
+                    if (data.length == 0) {
+                        $("#ID_MEDICINA").append('<option value>No hay solicitudes</option>').trigger("chosen:updated");
+                    }
+                    else {
+                        $("#ID_MEDICINA").append('<option value>Seleccione una opcion..</option>').trigger("chosen:updated");
+                    }
+                    data.forEach(function (sol) {
+
+                        $("#ID_MEDICINA").append('<option value="' + sol.NOMBRE + '">' + sol.DESCRIPCION + '</option>').trigger("chosen:updated");
+
+                    });
+                }
+            });
+                }
+
+</script>

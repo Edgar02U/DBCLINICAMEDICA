@@ -17,9 +17,9 @@ namespace Entidad
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PACIENTE()
         {
-            this.CITAS = new HashSet<CITAS>();
             this.EXAMEN_PACIENTE = new HashSet<EXAMEN_PACIENTE>();
             this.PACIENTE_HABITACION = new HashSet<PACIENTE_HABITACION>();
+            this.CITAS = new HashSet<CITAS>();
         }
     
         public int ID_PACIENTE { get; set; }
@@ -34,12 +34,12 @@ namespace Entidad
         public string CORREO_ELECTRONICO { get; set; }
         public int ID_SUCURSAL { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CITAS> CITAS { get; set; }
         public virtual SUCURSAL SUCURSAL { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EXAMEN_PACIENTE> EXAMEN_PACIENTE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PACIENTE_HABITACION> PACIENTE_HABITACION { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CITAS> CITAS { get; set; }
     }
 }

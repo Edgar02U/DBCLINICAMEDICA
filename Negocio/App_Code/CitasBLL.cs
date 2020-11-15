@@ -13,6 +13,24 @@ namespace Negocio.App_Code
     {
         private static CitasDAL obj = new CitasDAL();
 
+        public static void Agregar(CITAS cita)
+        {
+            obj.Agregar(cita);
+        }
+
+        public static CITAS GetCita(int id)
+        {
+            return obj.getCita(id);
+        }
+
+        public static void Editar(CITAS cita)
+        {
+            obj.Editar(cita);
+        }
+        public static void Eliminar(int id)
+        {
+            obj.Eliminar(id);
+        }
         public static List<CITAS> ListCita()
         {
             return obj.ListCita();
@@ -22,5 +40,6 @@ namespace Negocio.App_Code
         {
             return obj.ListCitas();
         }
+        
     }
 }

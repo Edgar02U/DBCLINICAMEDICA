@@ -15,5 +15,28 @@ namespace Negocio.App_Code
         {
             return obj.ListUsuario();
         }
+        public static List<ModelUsuario> ListUsuarios()
+        {
+            return obj.ListUsuarios();
+        }
+
+        public static void Agregar(USUARIO usuario)
+        {
+            obj.Agregar(usuario);
+        }
+
+        public static USUARIO GetUsuario(int id)
+        {
+            return obj.getUsuario(id);
+        }
+
+        public static void Editar(USUARIO usuario)
+        {
+            obj.Editar(usuario);
+        }
+        public static void Eliminar(int id)
+        {
+            obj.Eliminar(id);
+        }
     }
 }

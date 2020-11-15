@@ -228,13 +228,25 @@
     <Content Include="Views\Medicina\Medicina.cshtml" />
     <Content Include="Views\Sucursal\Sucursal.cshtml" />
     <Content Include="Views\Usuario\Usuario.cshtml" />
-    <Content Include="Views\Examen\Examen.cshtml" />
     <Content Include="Views\Habitacion\Habitacion.cshtml" />
     <Content Include="Views\ExamenPaciente\Examen_Paciente.cshtml" />
     <Content Include="Views\Inventario\Inventario.cshtml" />
     <Content Include="Views\Paciente_Habitacion\Paciente_Habitacion.cshtml" />
     <Content Include="Views\Paciente\Create.cshtml" />
     <Content Include="Views\Paciente\Editar.cshtml" />
+    <Content Include="Views\Cita\Editar.cshtml" />
+    <Content Include="Views\Cita\Create.cshtml" />
+    <Content Include="Views\Medicina\Create.cshtml" />
+    <Content Include="Views\Medicina\Editar.cshtml" />
+    <Content Include="Views\Examen\Create.cshtml" />
+    <Content Include="Views\ExamenPaciente\Create.cshtml" />
+    <Content Include="Views\Examen\Examen.cshtml" />
+    <Content Include="Views\Habitacion\Create.cshtml" />
+    <Content Include="Views\Habitacion\Editar.cshtml" />
+    <Content Include="Views\Inventario\Create.cshtml" />
+    <Content Include="Views\Paciente_Habitacion\Create.cshtml" />
+    <Content Include="Views\Sucursal\Create.cshtml" />
+    <Content Include="Views\Usuario\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

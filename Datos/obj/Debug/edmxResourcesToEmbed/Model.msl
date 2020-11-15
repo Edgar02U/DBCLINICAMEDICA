@@ -1,16 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="DBClinicaModelStoreContainer" CdmEntityContainer="DBClinicaEntities">
-    <EntitySetMapping Name="CITAS">
-      <EntityTypeMapping TypeName="DBClinicaModel.CITAS">
-        <MappingFragment StoreEntitySet="CITAS">
-          <ScalarProperty Name="ID_CITA" ColumnName="ID_CITA" />
-          <ScalarProperty Name="FECHA" ColumnName="FECHA" />
-          <ScalarProperty Name="OBOSERVACIONES" ColumnName="OBOSERVACIONES" />
-          <ScalarProperty Name="ID_PACIENTE" ColumnName="ID_PACIENTE" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="MEDICINA">
       <EntityTypeMapping TypeName="DBClinicaModel.MEDICINA">
         <MappingFragment StoreEntitySet="MEDICINA">
@@ -44,16 +34,6 @@
         <MappingFragment StoreEntitySet="TIPO_INVENTARIO">
           <ScalarProperty Name="ID_TIPO_INVENTARIO" ColumnName="ID_TIPO_INVENTARIO" />
           <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="INVENTARIO">
-      <EntityTypeMapping TypeName="DBClinicaModel.INVENTARIO">
-        <MappingFragment StoreEntitySet="INVENTARIO">
-          <ScalarProperty Name="ID_TIPO_INVENTARIO" ColumnName="ID_TIPO_INVENTARIO" />
-          <ScalarProperty Name="ID_MEDICINA" ColumnName="ID_MEDICINA" />
-          <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
-          <ScalarProperty Name="ID_SUCURSAL" ColumnName="ID_SUCURSAL" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -152,6 +132,27 @@
           <ScalarProperty Name="ID_HABITACION" ColumnName="ID_HABITACION" />
           <ScalarProperty Name="ID_PACIENTE" ColumnName="ID_PACIENTE" />
           <ScalarProperty Name="ID_PACIENTE_HABITACION" ColumnName="ID_PACIENTE_HABITACION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CITAS">
+      <EntityTypeMapping TypeName="DBClinicaModel.CITAS">
+        <MappingFragment StoreEntitySet="CITAS">
+          <ScalarProperty Name="ID_PACIENTE" ColumnName="ID_PACIENTE" />
+          <ScalarProperty Name="OBOSERVACIONES" ColumnName="OBOSERVACIONES" />
+          <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+          <ScalarProperty Name="ID_CITA" ColumnName="ID_CITA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INVENTARIO">
+      <EntityTypeMapping TypeName="DBClinicaModel.INVENTARIO">
+        <MappingFragment StoreEntitySet="INVENTARIO">
+          <ScalarProperty Name="ID_SUCURSAL" ColumnName="ID_SUCURSAL" />
+          <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+          <ScalarProperty Name="ID_MEDICINA" ColumnName="ID_MEDICINA" />
+          <ScalarProperty Name="ID_TIPO_INVENTARIO" ColumnName="ID_TIPO_INVENTARIO" />
+          <ScalarProperty Name="ID_INVENTARIO" ColumnName="ID_INVENTARIO" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

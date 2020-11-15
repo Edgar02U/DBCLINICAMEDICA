@@ -18,6 +18,38 @@ namespace WebClinicaMedica.Controllers
             return View(_cita);
         }
 
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View("~/Views/Cita/Create.cshtml");
+        }
+        [HttpPost]
+        public ActionResult Create(CITAS cita)
+        {
+
+            CitasBLL.Agregar(cita);
+            return View("~/Views/Cita/Cita.cshtml", cita);
+        }
+
+        public ActionResult Editar(int id)
+        {
+            var cita = CitasBLL.GetCita(id);
+            return View("~/Views/Cita/Editar.cshtml", cita);
+        }
+
+        [HttpPost]
+        public ActionResult Editar(CITAS cita)
+        {
+            return View(cita);
+        }
+
+        [HttpPost]
+        public ActionResult Eliminar(int id)
+        {
+            PacientesBLL.Eliminar(id);
+            return View("~/Views/Cita/Cita.cshtml");
+        }
+
         public JsonResult Citas_()
         {
             var data = CitasBLL.List_Citas();

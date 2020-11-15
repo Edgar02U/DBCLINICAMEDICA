@@ -1,4 +1,8 @@
 ﻿@model IEnumerable<Entidad.MEDICINA>
+
+
+@Styles.Render("~/bundles/css")
+@Scripts.Render("~/bundles/script")
 @{
     ViewBag.Title = "Medicina";
 }
@@ -13,8 +17,7 @@
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">
-                        Medicina <a title="Nuevo" class="btn btn-default btn-sm checkbox-toggle" href="Create"><i class="fa fa-file-o"> Nuevo </i></a>
-                                 <a title="Eliminar" class="btn btn-default btn-sm checkbox-toggle" href="Delete"><i class="fa fa-file-o"> Eliminar </i></a>
+                        Medicina <a title="Nuevo" class="btn btn-info" href="Create"><i> Nuevo </i></a>
                     </h3>
                 </div><!-- /.box-header -->
                 <div class="box-body no-padding">
@@ -26,6 +29,8 @@
                                 <th>@Html.DisplayNameFor(model => model.NOMBRE)</th>
 
                                 <th>@Html.DisplayNameFor(model => model.DESCRIPCION)</th>
+
+                                <th>Acciones</th>
                             </tr>
 
                             @foreach (var item in Model)
@@ -36,6 +41,10 @@
                                     <td>@Html.DisplayFor(modeltem => item.NOMBRE)</td>
 
                                     <td>@Html.DisplayFor(modeltem => item.DESCRIPCION)</td>
+                                    <td nowrap>
+                                        <button title="Editar" onclick="location.href='@Url.Action("Editar", new { id = item.ID_MEDICINA })';return false;" class="btn btn-info"><i class="fa fa-reply"></i> Editar</button>
+                                        <button title="Eliminar" onclick="location.href='@Url.Action("Eliminar", new { id = item.ID_MEDICINA})'; return false;" class="btn btn-info"><i class="fa fa-reply"></i> Eliminar</button>
+                                    </td>
                                 </tr>
                             }
 

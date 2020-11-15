@@ -45,15 +45,11 @@
           <Property Name="CAPACIDAD" Type="int" Nullable="false" />
           <Property Name="ESTADO" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'DBClinica.dbo.INVENTARIO' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="INVENTARIO">
           <Key>
-            <PropertyRef Name="ID_TIPO_INVENTARIO" />
-            <PropertyRef Name="ID_MEDICINA" />
-            
-            <PropertyRef Name="ID_SUCURSAL" />
+            <PropertyRef Name="ID_INVENTARIO" />
           </Key>
+          <Property Name="ID_INVENTARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_TIPO_INVENTARIO" Type="int" Nullable="false" />
           <Property Name="ID_MEDICINA" Type="int" Nullable="false" />
           <Property Name="CANTIDAD" Type="int" Nullable="false" />
@@ -315,6 +311,7 @@ advertencia 6002: La tabla o vista 'DBClinica.dbo.ROL_OPERACION' no tiene defini
           <EntitySet Name="EXAMEN" EntityType="Self.EXAMEN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EXAMEN_PACIENTE" EntityType="Self.EXAMEN_PACIENTE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HABITACION" EntityType="Self.HABITACION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INVENTARIO" EntityType="Self.INVENTARIO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MEDICINA" EntityType="Self.MEDICINA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OPERACION" EntityType="Self.OPERACION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PACIENTE" EntityType="Self.PACIENTE" Schema="dbo" store:Type="Tables" />
@@ -323,14 +320,6 @@ advertencia 6002: La tabla o vista 'DBClinica.dbo.ROL_OPERACION' no tiene defini
           <EntitySet Name="SUCURSAL" EntityType="Self.SUCURSAL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TIPO_INVENTARIO" EntityType="Self.TIPO_INVENTARIO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="INVENTARIO" EntityType="Self.INVENTARIO" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [INVENTARIO].[ID_TIPO_INVENTARIO] AS [ID_TIPO_INVENTARIO], 
-    [INVENTARIO].[ID_MEDICINA] AS [ID_MEDICINA], 
-    [INVENTARIO].[CANTIDAD] AS [CANTIDAD], 
-    [INVENTARIO].[ID_SUCURSAL] AS [ID_SUCURSAL]
-    FROM [dbo].[INVENTARIO] AS [INVENTARIO]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="ROL_OPERACION" EntityType="Self.ROL_OPERACION" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [ROL_OPERACION].[ID_ROL] AS [ID_ROL], 
@@ -395,24 +384,14 @@ advertencia 6002: La tabla o vista 'DBClinica.dbo.ROL_OPERACION' no tiene defini
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DBClinicaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="CITAS">
-          <Key>
-            <PropertyRef Name="ID_CITA" />
-          </Key>
-          <Property Name="ID_CITA" Type="Int32" Nullable="false" />
-          <Property Name="FECHA" Type="DateTime" Precision="0" Nullable="false" />
-          <Property Name="OBOSERVACIONES" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ID_PACIENTE" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="PACIENTE" Relationship="DBClinicaModel.FK_CITAS_PACIENTES" FromRole="CITAS" ToRole="PACIENTE" />
-        </EntityType>
         <EntityType Name="MEDICINA">
           <Key>
             <PropertyRef Name="ID_MEDICINA" />
           </Key>
           <Property Name="ID_MEDICINA" Type="Int32" Nullable="false" />
           <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="INVENTARIO" Relationship="Self.FK_INVENTARIO_MEDICINA" FromRole="MEDICINA" ToRole="INVENTARIO" />
           <Property Name="DESCRIPCION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="INVENTARIO" Relationship="DBClinicaModel.FK_INVENTARIO_MEDICINA" FromRole="MEDICINA" ToRole="INVENTARIO" />
         </EntityType>
         <EntityType Name="ROL">
           <Key>
@@ -431,9 +410,9 @@ advertencia 6002: La tabla o vista 'DBClinica.dbo.ROL_OPERACION' no tiene defini
           <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DIRECCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TELEFONO" Type="Int32" />
-          <NavigationProperty Name="INVENTARIO" Relationship="Self.FK_INVENTARIO_SUCURSAL" FromRole="SUCURSAL" ToRole="INVENTARIO" />
           <NavigationProperty Name="PACIENTE" Relationship="DBClinicaModel.FK_PACIENTE_SUCURSAL" FromRole="SUCURSAL" ToRole="PACIENTE" />
           <NavigationProperty Name="USUARIO" Relationship="DBClinicaModel.FK_USUARIO_SUCURSAL" FromRole="SUCURSAL" ToRole="USUARIO" />
+          <NavigationProperty Name="INVENTARIO" Relationship="DBClinicaModel.FK_INVENTARIO_SUCURSAL" FromRole="SUCURSAL" ToRole="INVENTARIO" />
         </EntityType>
         <EntityType Name="TIPO_INVENTARIO">
           <Key>
@@ -441,21 +420,7 @@ advertencia 6002: La tabla o vista 'DBClinica.dbo.ROL_OPERACION' no tiene defini
           </Key>
           <Property Name="ID_TIPO_INVENTARIO" Type="Int32" Nullable="false" />
           <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="INVENTARIO" Relationship="Self.FK_INVENTARIO_TIPO_INVENTARIO" FromRole="TIPO_INVENTARIO" ToRole="INVENTARIO" />
-        </EntityType>
-        <EntityType Name="INVENTARIO">
-          <Key>
-            <PropertyRef Name="ID_TIPO_INVENTARIO" />
-            <PropertyRef Name="ID_MEDICINA" />
-            <PropertyRef Name="ID_SUCURSAL" />
-          </Key>
-          <Property Name="ID_TIPO_INVENTARIO" Type="Int32" Nullable="false" />
-          <Property Name="ID_MEDICINA" Type="Int32" Nullable="false" />
-          <Property Name="CANTIDAD" Type="Int32" Nullable="false" />
-          <Property Name="ID_SUCURSAL" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="MEDICINA" Relationship="Self.FK_INVENTARIO_MEDICINA" FromRole="INVENTARIO" ToRole="MEDICINA" />
-          <NavigationProperty Name="SUCURSAL" Relationship="Self.FK_INVENTARIO_SUCURSAL" FromRole="INVENTARIO" ToRole="SUCURSAL" />
-          <NavigationProperty Name="TIPO_INVENTARIO" Relationship="Self.FK_INVENTARIO_TIPO_INVENTARIO" FromRole="INVENTARIO" ToRole="TIPO_INVENTARIO" />
+          <NavigationProperty Name="INVENTARIO" Relationship="DBClinicaModel.FK_INVENTARIO_TIPO_INVENTARIO" FromRole="TIPO_INVENTARIO" ToRole="INVENTARIO" />
         </EntityType>
         <EntityType Name="ROL_OPERACION">
           <Key>
@@ -470,18 +435,6 @@ advertencia 6002: La tabla o vista 'DBClinica.dbo.ROL_OPERACION' no tiene defini
           <NavigationProperty Name="USUARIO" Relationship="DBClinicaModel.FK_ROL_OPERACION_USUARIO" FromRole="ROL_OPERACION" ToRole="USUARIO" />
           <NavigationProperty Name="OPERACION" Relationship="DBClinicaModel.FK_ROL_OPERACION_OPERACION" FromRole="ROL_OPERACION" ToRole="OPERACION" />
         </EntityType>
-        <Association Name="FK_INVENTARIO_MEDICINA">
-          <End Role="MEDICINA" Type="Self.MEDICINA" Multiplicity="1" />
-          <End Role="INVENTARIO" Type="Self.INVENTARIO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MEDICINA">
-              <PropertyRef Name="ID_MEDICINA" />
-            </Principal>
-            <Dependent Role="INVENTARIO">
-              <PropertyRef Name="ID_MEDICINA" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ROL_OPERACION_ROL">
           <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
           <End Role="ROL_OPERACION" Type="Self.ROL_OPERACION" Multiplicity="*" />
@@ -494,60 +447,18 @@ advertencia 6002: La tabla o vista 'DBClinica.dbo.ROL_OPERACION' no tiene defini
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_INVENTARIO_SUCURSAL">
-          <End Role="SUCURSAL" Type="Self.SUCURSAL" Multiplicity="1" />
-          <End Role="INVENTARIO" Type="Self.INVENTARIO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SUCURSAL">
-              <PropertyRef Name="ID_SUCURSAL" />
-            </Principal>
-            <Dependent Role="INVENTARIO">
-              <PropertyRef Name="ID_SUCURSAL" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_INVENTARIO_TIPO_INVENTARIO">
-          <End Role="TIPO_INVENTARIO" Type="Self.TIPO_INVENTARIO" Multiplicity="1" />
-          <End Role="INVENTARIO" Type="Self.INVENTARIO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TIPO_INVENTARIO">
-              <PropertyRef Name="ID_TIPO_INVENTARIO" />
-            </Principal>
-            <Dependent Role="INVENTARIO">
-              <PropertyRef Name="ID_TIPO_INVENTARIO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="DBClinicaEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="CITAS" EntityType="Self.CITAS" />
           <EntitySet Name="MEDICINA" EntityType="Self.MEDICINA" />
           <EntitySet Name="ROL" EntityType="Self.ROL" />
           <EntitySet Name="SUCURSAL" EntityType="Self.SUCURSAL" />
           <EntitySet Name="TIPO_INVENTARIO" EntityType="Self.TIPO_INVENTARIO" />
-          <EntitySet Name="INVENTARIO" EntityType="Self.INVENTARIO" />
           <EntitySet Name="ROL_OPERACION" EntityType="Self.ROL_OPERACION" />
-          <AssociationSet Name="FK_INVENTARIO_MEDICINA" Association="Self.FK_INVENTARIO_MEDICINA">
-            <End Role="MEDICINA" EntitySet="MEDICINA" />
-            <End Role="INVENTARIO" EntitySet="INVENTARIO" />
-          </AssociationSet>
           <AssociationSet Name="FK_ROL_OPERACION_ROL" Association="Self.FK_ROL_OPERACION_ROL">
             <End Role="ROL" EntitySet="ROL" />
             <End Role="ROL_OPERACION" EntitySet="ROL_OPERACION" />
           </AssociationSet>
-          <AssociationSet Name="FK_INVENTARIO_SUCURSAL" Association="Self.FK_INVENTARIO_SUCURSAL">
-            <End Role="SUCURSAL" EntitySet="SUCURSAL" />
-            <End Role="INVENTARIO" EntitySet="INVENTARIO" />
-          </AssociationSet>
-          <AssociationSet Name="FK_INVENTARIO_TIPO_INVENTARIO" Association="Self.FK_INVENTARIO_TIPO_INVENTARIO">
-            <End Role="TIPO_INVENTARIO" EntitySet="TIPO_INVENTARIO" />
-            <End Role="INVENTARIO" EntitySet="INVENTARIO" />
-          </AssociationSet>
           <EntitySet Name="EXAMEN" EntityType="DBClinicaModel.EXAMEN" />
           <EntitySet Name="PACIENTE" EntityType="DBClinicaModel.PACIENTE" />
-          <AssociationSet Name="FK_CITAS_PACIENTES" Association="DBClinicaModel.FK_CITAS_PACIENTES">
-            <End Role="PACIENTE" EntitySet="PACIENTE" />
-            <End Role="CITAS" EntitySet="CITAS" />
-          </AssociationSet>
           <AssociationSet Name="FK_PACIENTE_SUCURSAL" Association="DBClinicaModel.FK_PACIENTE_SUCURSAL">
             <End Role="SUCURSAL" EntitySet="SUCURSAL" />
             <End Role="PACIENTE" EntitySet="PACIENTE" />
@@ -585,7 +496,25 @@ advertencia 6002: La tabla o vista 'DBClinica.dbo.ROL_OPERACION' no tiene defini
             <End Role="PACIENTE" EntitySet="PACIENTE" />
             <End Role="PACIENTE_HABITACION" EntitySet="PACIENTE_HABITACION" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="CITAS" EntityType="DBClinicaModel.CITAS" />
+          <AssociationSet Name="FK_CITAS_PACIENTES" Association="DBClinicaModel.FK_CITAS_PACIENTES">
+            <End Role="PACIENTE" EntitySet="PACIENTE" />
+            <End Role="CITAS" EntitySet="CITAS" />
+          </AssociationSet>
+          <EntitySet Name="INVENTARIO" EntityType="DBClinicaModel.INVENTARIO" />
+          <AssociationSet Name="FK_INVENTARIO_MEDICINA" Association="DBClinicaModel.FK_INVENTARIO_MEDICINA">
+            <End Role="MEDICINA" EntitySet="MEDICINA" />
+            <End Role="INVENTARIO" EntitySet="INVENTARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INVENTARIO_SUCURSAL" Association="DBClinicaModel.FK_INVENTARIO_SUCURSAL">
+            <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+            <End Role="INVENTARIO" EntitySet="INVENTARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INVENTARIO_TIPO_INVENTARIO" Association="DBClinicaModel.FK_INVENTARIO_TIPO_INVENTARIO">
+            <End Role="TIPO_INVENTARIO" EntitySet="TIPO_INVENTARIO" />
+            <End Role="INVENTARIO" EntitySet="INVENTARIO" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="EXAMEN">
           <Key>
             <PropertyRef Name="ID_EXAMEN" />
@@ -613,23 +542,11 @@ advertencia 6002: La tabla o vista 'DBClinica.dbo.ROL_OPERACION' no tiene defini
           <Property Name="TELEFONO" Type="Int32" Nullable="false" />
           <Property Name="CORREO_ELECTRONICO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ID_SUCURSAL" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CITAS" Relationship="DBClinicaModel.FK_CITAS_PACIENTES" FromRole="PACIENTE" ToRole="CITAS" />
           <NavigationProperty Name="SUCURSAL" Relationship="DBClinicaModel.FK_PACIENTE_SUCURSAL" FromRole="PACIENTE" ToRole="SUCURSAL" />
           <NavigationProperty Name="EXAMEN_PACIENTE" Relationship="DBClinicaModel.FK_EXAMEN_PACIENTE_PACIENTES" FromRole="PACIENTE" ToRole="EXAMEN_PACIENTE" />
           <NavigationProperty Name="PACIENTE_HABITACION" Relationship="DBClinicaModel.FK_PACIENTE_HABITACION_PACIENTE" FromRole="PACIENTE" ToRole="PACIENTE_HABITACION" />
+          <NavigationProperty Name="CITAS" Relationship="DBClinicaModel.FK_CITAS_PACIENTES" FromRole="PACIENTE" ToRole="CITAS" />
         </EntityType>
-        <Association Name="FK_CITAS_PACIENTES">
-          <End Type="DBClinicaModel.PACIENTE" Role="PACIENTE" Multiplicity="1" />
-          <End Type="DBClinicaModel.CITAS" Role="CITAS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PACIENTE">
-              <PropertyRef Name="ID_PACIENTE" />
-            </Principal>
-            <Dependent Role="CITAS">
-              <PropertyRef Name="ID_PACIENTE" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_PACIENTE_SUCURSAL">
           <End Type="DBClinicaModel.SUCURSAL" Role="SUCURSAL" Multiplicity="1" />
           <End Type="DBClinicaModel.PACIENTE" Role="PACIENTE" Multiplicity="*" />
@@ -789,22 +706,83 @@ advertencia 6002: La tabla o vista 'DBClinica.dbo.ROL_OPERACION' no tiene defini
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <EntityType Name="CITAS">
+          <Key>
+            <PropertyRef Name="ID_CITA" />
+          </Key>
+          <Property Name="ID_CITA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FECHA" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="OBOSERVACIONES" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ID_PACIENTE" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PACIENTE" Relationship="DBClinicaModel.FK_CITAS_PACIENTES" FromRole="CITAS" ToRole="PACIENTE" />
+        </EntityType>
+        <Association Name="FK_CITAS_PACIENTES">
+          <End Type="DBClinicaModel.PACIENTE" Role="PACIENTE" Multiplicity="1" />
+          <End Type="DBClinicaModel.CITAS" Role="CITAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PACIENTE">
+              <PropertyRef Name="ID_PACIENTE" />
+            </Principal>
+            <Dependent Role="CITAS">
+              <PropertyRef Name="ID_PACIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="INVENTARIO">
+          <Key>
+            <PropertyRef Name="ID_INVENTARIO" />
+          </Key>
+          <Property Name="ID_INVENTARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_TIPO_INVENTARIO" Type="Int32" Nullable="false" />
+          <Property Name="ID_MEDICINA" Type="Int32" Nullable="false" />
+          <Property Name="CANTIDAD" Type="Int32" Nullable="false" />
+          <Property Name="ID_SUCURSAL" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MEDICINA" Relationship="DBClinicaModel.FK_INVENTARIO_MEDICINA" FromRole="INVENTARIO" ToRole="MEDICINA" />
+          <NavigationProperty Name="SUCURSAL" Relationship="DBClinicaModel.FK_INVENTARIO_SUCURSAL" FromRole="INVENTARIO" ToRole="SUCURSAL" />
+          <NavigationProperty Name="TIPO_INVENTARIO" Relationship="DBClinicaModel.FK_INVENTARIO_TIPO_INVENTARIO" FromRole="INVENTARIO" ToRole="TIPO_INVENTARIO" />
+        </EntityType>
+        <Association Name="FK_INVENTARIO_MEDICINA">
+          <End Type="DBClinicaModel.MEDICINA" Role="MEDICINA" Multiplicity="1" />
+          <End Type="DBClinicaModel.INVENTARIO" Role="INVENTARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEDICINA">
+              <PropertyRef Name="ID_MEDICINA" />
+            </Principal>
+            <Dependent Role="INVENTARIO">
+              <PropertyRef Name="ID_MEDICINA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INVENTARIO_SUCURSAL">
+          <End Type="DBClinicaModel.SUCURSAL" Role="SUCURSAL" Multiplicity="1" />
+          <End Type="DBClinicaModel.INVENTARIO" Role="INVENTARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUCURSAL">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Principal>
+            <Dependent Role="INVENTARIO">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INVENTARIO_TIPO_INVENTARIO">
+          <End Type="DBClinicaModel.TIPO_INVENTARIO" Role="TIPO_INVENTARIO" Multiplicity="1" />
+          <End Type="DBClinicaModel.INVENTARIO" Role="INVENTARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_INVENTARIO">
+              <PropertyRef Name="ID_TIPO_INVENTARIO" />
+            </Principal>
+            <Dependent Role="INVENTARIO">
+              <PropertyRef Name="ID_TIPO_INVENTARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DBClinicaModelStoreContainer" CdmEntityContainer="DBClinicaEntities">
-          <EntitySetMapping Name="CITAS">
-            <EntityTypeMapping TypeName="DBClinicaModel.CITAS">
-              <MappingFragment StoreEntitySet="CITAS">
-                <ScalarProperty Name="ID_CITA" ColumnName="ID_CITA" />
-                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
-                <ScalarProperty Name="OBOSERVACIONES" ColumnName="OBOSERVACIONES" />
-                <ScalarProperty Name="ID_PACIENTE" ColumnName="ID_PACIENTE" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="MEDICINA">
             <EntityTypeMapping TypeName="DBClinicaModel.MEDICINA">
               <MappingFragment StoreEntitySet="MEDICINA">
@@ -838,16 +816,6 @@ advertencia 6002: La tabla o vista 'DBClinica.dbo.ROL_OPERACION' no tiene defini
               <MappingFragment StoreEntitySet="TIPO_INVENTARIO">
                 <ScalarProperty Name="ID_TIPO_INVENTARIO" ColumnName="ID_TIPO_INVENTARIO" />
                 <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="INVENTARIO">
-            <EntityTypeMapping TypeName="DBClinicaModel.INVENTARIO">
-              <MappingFragment StoreEntitySet="INVENTARIO">
-                <ScalarProperty Name="ID_TIPO_INVENTARIO" ColumnName="ID_TIPO_INVENTARIO" />
-                <ScalarProperty Name="ID_MEDICINA" ColumnName="ID_MEDICINA" />
-                <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
-                <ScalarProperty Name="ID_SUCURSAL" ColumnName="ID_SUCURSAL" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -946,6 +914,27 @@ advertencia 6002: La tabla o vista 'DBClinica.dbo.ROL_OPERACION' no tiene defini
                 <ScalarProperty Name="ID_HABITACION" ColumnName="ID_HABITACION" />
                 <ScalarProperty Name="ID_PACIENTE" ColumnName="ID_PACIENTE" />
                 <ScalarProperty Name="ID_PACIENTE_HABITACION" ColumnName="ID_PACIENTE_HABITACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CITAS">
+            <EntityTypeMapping TypeName="DBClinicaModel.CITAS">
+              <MappingFragment StoreEntitySet="CITAS">
+                <ScalarProperty Name="ID_PACIENTE" ColumnName="ID_PACIENTE" />
+                <ScalarProperty Name="OBOSERVACIONES" ColumnName="OBOSERVACIONES" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="ID_CITA" ColumnName="ID_CITA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INVENTARIO">
+            <EntityTypeMapping TypeName="DBClinicaModel.INVENTARIO">
+              <MappingFragment StoreEntitySet="INVENTARIO">
+                <ScalarProperty Name="ID_SUCURSAL" ColumnName="ID_SUCURSAL" />
+                <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+                <ScalarProperty Name="ID_MEDICINA" ColumnName="ID_MEDICINA" />
+                <ScalarProperty Name="ID_TIPO_INVENTARIO" ColumnName="ID_TIPO_INVENTARIO" />
+                <ScalarProperty Name="ID_INVENTARIO" ColumnName="ID_INVENTARIO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

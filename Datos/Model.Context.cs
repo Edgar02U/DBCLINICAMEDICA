@@ -25,12 +25,10 @@ namespace Entidad
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<CITAS> CITAS { get; set; }
         public virtual DbSet<MEDICINA> MEDICINA { get; set; }
         public virtual DbSet<ROL> ROL { get; set; }
         public virtual DbSet<SUCURSAL> SUCURSAL { get; set; }
         public virtual DbSet<TIPO_INVENTARIO> TIPO_INVENTARIO { get; set; }
-        public virtual DbSet<INVENTARIO> INVENTARIO { get; set; }
         public virtual DbSet<ROL_OPERACION> ROL_OPERACION { get; set; }
         public virtual DbSet<EXAMEN> EXAMEN { get; set; }
         public virtual DbSet<PACIENTE> PACIENTE { get; set; }
@@ -39,5 +37,7 @@ namespace Entidad
         public virtual DbSet<OPERACION> OPERACION { get; set; }
         public virtual DbSet<EXAMEN_PACIENTE> EXAMEN_PACIENTE { get; set; }
         public virtual DbSet<PACIENTE_HABITACION> PACIENTE_HABITACION { get; set; }
+        public virtual DbSet<CITAS> CITAS { get; set; }
+        public virtual DbSet<INVENTARIO> INVENTARIO { get; set; }
     }
 }

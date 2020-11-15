@@ -1,0 +1,49 @@
+﻿@model Entidad.PACIENTE_HABITACION
+
+
+<br />
+<br />
+<br />
+<br />
+<h2>Ingreso Paciente en una Habitacion</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Nombre Paciente</label>
+            <div class="col-md-10">
+                <input id="ID_PACIENTE" name="ID_PACIENTE" class="form-control" placeholder="Nombre Paciente" />
+                @Html.ValidationMessageFor(model => model.ID_PACIENTE, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Nombre de la Habitacion</label>
+            <div class="col-md-10">
+                <input id="ID_HABITACION" name="ID_HABITACION" class="form-control" placeholder="Nombre de la Habitacion" />
+                @Html.ValidationMessageFor(model => model.ID_HABITACION, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Fecha Estancia</label>
+            <div class="col-md-10">
+                <input id="Fecha_Estancia" name="Fecha_Estancia" class="form-control" placeholder="Fecha Estancia" />
+                @Html.ValidationMessageFor(model => model.Fecha_Estancia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Crear" class="btn btn-info" />
+                <button title="Regresar" onclick="location.href='@Url.Action("Paciente_Habitacion", "Paciente_Habitacion")';return false;" class="btn btn-info"><i class="fa fa-reply"></i> Regresar</button>
+            </div>
+        </div>
+    </div>
+}

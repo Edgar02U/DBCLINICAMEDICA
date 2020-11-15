@@ -40,14 +40,11 @@
     <Property Name="CAPACIDAD" Type="int" Nullable="false" />
     <Property Name="ESTADO" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
-  <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'DBClinica.dbo.INVENTARIO' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
   <EntityType Name="INVENTARIO">
     <Key>
-      <PropertyRef Name="ID_TIPO_INVENTARIO" />
-      <PropertyRef Name="ID_MEDICINA" />
-      <PropertyRef Name="ID_SUCURSAL" />
+      <PropertyRef Name="ID_INVENTARIO" />
     </Key>
+    <Property Name="ID_INVENTARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ID_TIPO_INVENTARIO" Type="int" Nullable="false" />
     <Property Name="ID_MEDICINA" Type="int" Nullable="false" />
     <Property Name="CANTIDAD" Type="int" Nullable="false" />
@@ -309,6 +306,7 @@ advertencia 6002: La tabla o vista 'DBClinica.dbo.ROL_OPERACION' no tiene defini
     <EntitySet Name="EXAMEN" EntityType="Self.EXAMEN" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EXAMEN_PACIENTE" EntityType="Self.EXAMEN_PACIENTE" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HABITACION" EntityType="Self.HABITACION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="INVENTARIO" EntityType="Self.INVENTARIO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MEDICINA" EntityType="Self.MEDICINA" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OPERACION" EntityType="Self.OPERACION" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PACIENTE" EntityType="Self.PACIENTE" Schema="dbo" store:Type="Tables" />
@@ -317,14 +315,6 @@ advertencia 6002: La tabla o vista 'DBClinica.dbo.ROL_OPERACION' no tiene defini
     <EntitySet Name="SUCURSAL" EntityType="Self.SUCURSAL" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TIPO_INVENTARIO" EntityType="Self.TIPO_INVENTARIO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="INVENTARIO" EntityType="Self.INVENTARIO" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [INVENTARIO].[ID_TIPO_INVENTARIO] AS [ID_TIPO_INVENTARIO], 
-    [INVENTARIO].[ID_MEDICINA] AS [ID_MEDICINA], 
-    [INVENTARIO].[CANTIDAD] AS [CANTIDAD], 
-    [INVENTARIO].[ID_SUCURSAL] AS [ID_SUCURSAL]
-    FROM [dbo].[INVENTARIO] AS [INVENTARIO]</DefiningQuery>
-    </EntitySet>
     <EntitySet Name="ROL_OPERACION" EntityType="Self.ROL_OPERACION" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [ROL_OPERACION].[ID_ROL] AS [ID_ROL], 

@@ -21,5 +21,23 @@ namespace Negocio.App_Code
         {
             return obj.ListPaciHabis();
         }
+        public static void Agregar(PACIENTE_HABITACION pacienteHabitacion)
+        {
+            obj.Agregar(pacienteHabitacion);
+        }
+
+        public static PACIENTE_HABITACION GetPaciHabit(int id)
+        {
+            return obj.getPacienteHabitacion(id);
+        }
+
+        public static void Editar(PACIENTE_HABITACION pacienteHabitacion)
+        {
+            obj.Editar(pacienteHabitacion);
+        }
+        public static void Eliminar(int id)
+        {
+            obj.Eliminar(id);
+        }
     }
 }

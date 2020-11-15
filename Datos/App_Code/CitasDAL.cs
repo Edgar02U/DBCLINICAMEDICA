@@ -13,11 +13,55 @@ namespace Datos.App_Code
 {
     public class CitasDAL
     {
+       
+        public void Agregar(CITAS cita)
+        {
+            using (DBClinicaEntities db = new DBClinicaEntities())
+            {
+                db.CITAS.Add(cita);
+                db.SaveChanges();
+            }
+        }
+
+        public CITAS getCita(int id)
+        {
+            using (DBClinicaEntities db = new DBClinicaEntities())
+            {
+                return db.CITAS.Find(id);
+                //return db.PACIENTE.Where(x => x.ID_PACIENTE ==id).FirstOrDefault();
+            }
+        }
+
+        public void Editar(CITAS cita)
+        {
+            using (DBClinicaEntities db = new DBClinicaEntities())
+            {
+                var c = db.CITAS.Find(cita.ID_CITA);
+
+
+                c.FECHA = cita.FECHA;
+                c.OBOSERVACIONES = cita.OBOSERVACIONES;
+                c.ID_PACIENTE = cita.ID_PACIENTE;
+                
+                db.SaveChanges();
+            }
+        }
+
+        public void Eliminar(int id)
+        {
+            using (DBClinicaEntities db = new DBClinicaEntities())
+            {
+                var cit = db.CITAS.Find(id);
+                db.CITAS.Remove(cit);
+                db.SaveChanges();
+            }
+        }
+
         public List<CITAS> ListCita()
         {
             using (DBClinicaEntities db = new DBClinicaEntities())
             {
-                return db.CITAS.ToList(); 
+                return db.CITAS.ToList();
             }
         }
 
@@ -41,5 +85,6 @@ namespace Datos.App_Code
             }
             return Citas;
         }
+       
     }
 }

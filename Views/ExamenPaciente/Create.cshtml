@@ -1,0 +1,54 @@
+﻿@model Entidad.EXAMEN_PACIENTE
+
+
+<br />
+<br />
+<br />
+<br />
+<h2>Crear Examen Paciente</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Nombre Examen</label>
+        <div class="col-md-10">
+            <input id="ID_EXAMEN" name="ID_EXAMEN" class="form-control" placeholder="Nombre Examen" />
+            @Html.ValidationMessageFor(model => model.ID_EXAMEN, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Nombre Paciente</label>
+        <div class="col-md-10">
+            <input id="ID_PACIENTE" name="ID_PACIENTE" class="form-control" placeholder="Nombre Paciente" />
+            @Html.ValidationMessageFor(model => model.ID_PACIENTE, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Fecha Realizo</label>
+        <div class="col-md-10">
+            <input id="FECHA_REALIZO" name="FECHA_REALIZO" class="form-control" placeholder="Fecha Realizo" />
+            @Html.ValidationMessageFor(model => model.FECHA_REALIZO, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Encargado</label>
+        <div class="col-md-10">
+            <input id="ENCARGADO" name="ENCARGADO" class="form-control" placeholder="Encargado" />
+            @Html.ValidationMessageFor(model => model.ENCARGADO, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Crear" class="btn btn-info" />
+            <button title="Regresar" onclick="location.href='@Url.Action("Examen_Paciente")';return false;" class="btn btn-info"><i class="fa fa-reply"></i> Regresar</button>
+        </div>
+    </div>
+</div>
+}

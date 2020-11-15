@@ -1,4 +1,3 @@
-C:\Users\KIKAW\source\repos\WebClinicaMedica\obj\Debug\WebClinicaMedica.csproj.CoreCompileInputs.cache
 C:\Users\KIKAW\source\repos\WebClinicaMedica\bin\WebClinicaMedica.dll.config
 C:\Users\KIKAW\source\repos\WebClinicaMedica\bin\WebClinicaMedica.dll
 C:\Users\KIKAW\source\repos\WebClinicaMedica\bin\WebClinicaMedica.pdb
@@ -69,6 +68,7 @@ C:\Users\KIKAW\source\repos\WebClinicaMedica\bin\es\System.Web.WebPages.resource
 C:\Users\KIKAW\source\repos\WebClinicaMedica\bin\es\System.Web.WebPages.Deployment.resources.dll
 C:\Users\KIKAW\source\repos\WebClinicaMedica\bin\es\System.Web.WebPages.Razor.resources.dll
 C:\Users\KIKAW\source\repos\WebClinicaMedica\obj\Debug\WebClinicaMedica.csprojAssemblyReference.cache
+C:\Users\KIKAW\source\repos\WebClinicaMedica\obj\Debug\WebClinicaMedica.csproj.CoreCompileInputs.cache
 C:\Users\KIKAW\source\repos\WebClinicaMedica\obj\Debug\WebClinicaMedica.csproj.CopyComplete
 C:\Users\KIKAW\source\repos\WebClinicaMedica\obj\Debug\WebClinicaMedica.dll
 C:\Users\KIKAW\source\repos\WebClinicaMedica\obj\Debug\WebClinicaMedica.pdb

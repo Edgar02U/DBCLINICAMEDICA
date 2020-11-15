@@ -17,9 +17,9 @@ namespace Entidad
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SUCURSAL()
         {
-            this.INVENTARIO = new HashSet<INVENTARIO>();
             this.PACIENTE = new HashSet<PACIENTE>();
             this.USUARIO = new HashSet<USUARIO>();
+            this.INVENTARIO = new HashSet<INVENTARIO>();
         }
     
         public int ID_SUCURSAL { get; set; }
@@ -28,10 +28,10 @@ namespace Entidad
         public Nullable<int> TELEFONO { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<INVENTARIO> INVENTARIO { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PACIENTE> PACIENTE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<USUARIO> USUARIO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<INVENTARIO> INVENTARIO { get; set; }
     }
 }

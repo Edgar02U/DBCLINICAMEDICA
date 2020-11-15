@@ -35,12 +35,6 @@ namespace Datos.App_Code
         //    return DatosPaciente;
         //}
 
-        //public void add(PACIENTE paciente)
-        //{
-        //    using (DBClinicaEntities db = new DBClinicaEntities())
-        //    {
-        //    }
-        //}
         public void Agregar(PACIENTE paciente)
         {
             using (DBClinicaEntities db = new DBClinicaEntities())

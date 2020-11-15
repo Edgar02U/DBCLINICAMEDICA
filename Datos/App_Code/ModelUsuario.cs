@@ -16,11 +16,11 @@ namespace Datos.App_Code
         public string USERC { get; set; }
         public string PASSWORD { get; set; }
         public Nullable<int> EDAD { get; set; }
-        public Nullable<System.DateTime> FECHA_NACIMIENTO { get; set; }
+        public Nullable<System.DateTime> FECHA_CREACION { get; set; }
         public string ESTADO { get; set; }
         public string PUESTO { get; set; }
         public string GENERO { get; set; }
-        public Nullable<int> ID_SUCURSAL { get; set; }
+        public string SUCURSAL { get; set; }
     }
 }
 

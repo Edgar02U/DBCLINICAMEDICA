@@ -12,12 +12,22 @@ namespace WebClinicaMedica.Controllers
 {
     public class HomeController : Controller
     {
-        
         public ActionResult Index()
         {
-            
             return View();
         }
-         
+        public ActionResult Tabs(int tab)
+        {
+                ViewData["pestana"] = tab;
+                return PartialView("~/Views/Home/Index.cshtml");
+
+        }
+        public ActionResult TabPanel(int pestana)
+        {
+            
+                ViewData["pestana"] = pestana;
+                return PartialView("~/Views/Home/Index.cshtml");
+        }
+
     }
 }
